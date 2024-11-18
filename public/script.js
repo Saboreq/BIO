@@ -26,3 +26,18 @@ setInterval(showNotification, 7000);
 
 // Initial call to display the first word immediately
 showNotification();
+
+function copyEmail() {
+    const email = "contact@saboreq.site";
+    navigator.clipboard.writeText(email).then(() => {
+        // Optional: Show some feedback that email was copied
+        const notification = document.querySelector('.notification');
+        notification.textContent = "Email copied to clipboard!";
+        notification.style.display = "block";
+        
+        // Hide notification after 2 seconds
+        setTimeout(() => {
+            notification.style.display = "none";
+        }, 2000);
+    });
+}

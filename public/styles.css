@@ -154,3 +154,13 @@ h1 {
     opacity: 0;
     transform: translateY(-20px);
 }
+
+.email-copy {
+    cursor: pointer;
+    color: #b0b0b0;
+    text-decoration: underline;
+}
+
+.email-copy:hover {
+    opacity: 0.8;
+}
