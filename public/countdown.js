@@ -10,8 +10,8 @@ function startCountdown(duration, display, updateContent) {
         display.textContent = minutes + ":" + seconds;
 
         if (--timer < 0) {
-            timer = duration; // Reset the timer
-            updateExtraContent();  // Update content on reset
+            timer = duration;
+            updateExtraContent();
         }
     }, 1000);
 }
@@ -20,19 +20,28 @@ function updateExtraContent() {
     const quotes = [
         { title: "Inspiration", text: "Believe you can and you're halfway there." },
         { title: "Wisdom", text: "The only true wisdom is in knowing you know nothing." },
-        { title: "Courage", text: "Courage is resistance to fear, mastery of fear, not absence of fear." }
+        { title: "Courage", text: "Courage is resistance to fear, mastery of fear, not absence of fear." },
+        { title: "Inspiration", text: "Dream big and dare to fail." },
+        { title: "Wisdom", text: "Turn wounds into wisdom." },
+        { title: "Courage", text: "Do it scared." }
     ];
-
+    
     const funFacts = [
         { title: "Fun Fact", text: "Bananas are berries, but strawberries aren't!" },
         { title: "Fun Fact", text: "A day on Venus is longer than a year on Venus." },
-        { title: "Fun Fact", text: "Honey never spoils." }
+        { title: "Fun Fact", text: "Honey never spoils." },
+        { title: "Fun Fact", text: "Octopuses have three hearts." },
+        { title: "Fun Fact", text: "Sharks existed before trees." },
+        { title: "Fun Fact", text: "Wombat poop is cube-shaped." }
     ];
-
+    
     const motivations = [
         { title: "Motivation", text: "Your limitation—it's only your imagination." },
         { title: "Motivation", text: "Push yourself, because no one else is going to do it for you." },
-        { title: "Motivation", text: "Great things never come from comfort zones." }
+        { title: "Motivation", text: "Great things never come from comfort zones." },
+        { title: "Motivation", text: "Don’t stop when you’re tired, stop when you’re done." },
+        { title: "Motivation", text: "Small steps lead to big changes." },
+        { title: "Motivation", text: "Believe in yourself and all you can achieve." }
     ];
 
     const extraGlassElements = document.querySelectorAll('.extra-glass');
@@ -55,9 +64,9 @@ function updateDate() {
 
 document.addEventListener('DOMContentLoaded', () => {
     const countdownElement = document.getElementById('countdown');
-    const oneMinute = 60; // 1 minute in seconds
+    const oneMinute = 60;
     startCountdown(oneMinute, countdownElement, updateExtraContent);
-    updateExtraContent(); // Initial content update
-    updateDate(); // Initial date update
-    setInterval(updateDate, 86400000); // Update date every 24 hours
+    updateExtraContent();
+    updateDate();
+    setInterval(updateDate, 86400000);
 });
