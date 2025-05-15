@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 addResponse(`
                     <p>My social media:</p>
                     <ul>
-                        <li><span class="purple">NONE</span></li>
+                        <li><span class="purple">You wish lol</span></li>
                     </ul>
                 `);
             }
