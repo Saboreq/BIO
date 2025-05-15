@@ -3,56 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bio Page</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
-    <link rel="manifest" href="img/site.webmanifest">
+    <title>Saboreq Terminal</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="header-container">
-        <div id="countdown" class="countdown"></div>
-        <div id="date" class="date"></div>
-    </div>
-    <div class="glass-container">
-        <h1>About Me</h1>
-        <div class="bio-info">
-            <p><strong>Username:</strong> Saboreq</p>
-            <p><strong>Age:</strong> 20</p>
-            <p><strong>Email:</strong> <span class="email-copy" onclick="copyEmail()">contact@saboreq.site</span></p>
-            <p><strong>Hobbies:</strong> Coding, Gaming, Music</p>
-            <p><strong>Skills im learning:</strong></p>
-            <div class="skills">
-                <img src="./img/js.png" alt="JavaScript" class="skill-icon">
-                <img src="./img/html.png" alt="HTML" class="skill-icon">
-                <img src="./img/css.png" alt="CSS" class="skill-icon">
-                <img src="./img/nodejs.png" alt="Node.js" class="skill-icon">
+    <div class="terminal-container">
+        <div class="terminal">
+            <div class="terminal-header">
+                <div class="terminal-buttons">
+                    <span class="terminal-btn close"></span>
+                    <span class="terminal-btn minimize"></span>
+                    <span class="terminal-btn maximize"></span>
+                </div>
+                <span class="terminal-title">Saboreq@portfolio:~</span>
+            </div>
+            <div class="terminal-body">
+                <div class="avatar-container">
+                    <img src="/images/avatar.png" alt="Avatar" class="avatar">
+                </div>
+                <div class="output" id="terminal-output">
+                    <div class="output-line">
+                        <span class="prompt">></span> <span class="command">welcome</span>
+                        <div class="command-response">
+                            <p>Welcome to my interactive terminal!</p>
+                            <p>Type <span class="purple">help</span> to see available commands</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="input-line">
+                    <span class="prompt">></span>
+                    <input type="text" id="command-input" autocomplete="off" spellcheck="false" autofocus>
+                    <span class="cursor">_</span>
+                </div>
             </div>
         </div>
     </div>
 
-    <div class="extra-containers">
-        <div class="extra-glass">
-            <h2>Quote of the Day</h2>
-            <p>"The only way to do great work is to love what you do." – Steve Jobs</p>
-        </div>
-        <div class="extra-glass">
-            <h2>Fun Fact</h2>
-            <p>Did you know? Honey never spoils. Archaeologists have found pots of honey in ancient Egyptian tombs that are over 3,000 years old and still edible!</p>
-        </div>
-        <div class="extra-glass">
-            <h2>Motivation</h2>
-            <p>"Success is not the key to happiness. Happiness is the key to success. If you love what you are doing, you will be successful." – Albert Schweitzer</p>
-        </div>
-    </div>
-    <div class="notification">
-        Random Word
-    </div>
-
-    <img class="lanyard-image" src="https://lanyard.cnrad.dev/api/846992995886301184" alt="Discord Presence">
-
-    <script src="countdown.js"></script>
-    <script src="script.js"></script>
+    <script src="/js/script.js"></script>
 </body>
 </html>

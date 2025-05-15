@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= bio.name %>'s Bio</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background">
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+    
+    <main class="glass-container">
+        <div class="avatar-container">
+            <img src="<%= bio.avatar %>" alt="<%= bio.name %>'s avatar" class="avatar">
+        </div>
+        
+        <h1 class="name"><%= bio.name %></h1>
+        
+        <div class="info-card">
+            <h2>Contact</h2>
+            <div class="info-item">
+                <span class="icon">✉️</span>
+                <a href="mailto:<%= bio.email %>" class="email"><%= bio.email %></a>
+            </div>
+        </div>
+        
+        <div class="info-card">
+            <h2>Hobbies</h2>
+            <ul class="hobbies-list">
+                <% bio.hobbies.forEach(hobby => { %>
+                    <li class="hobby-item">
+                        <span class="hobby-icon">✦</span>
+                        <%= hobby %>
+                    </li>
+                <% }); %>
+            </ul>
+        </div>
+    </main>
+    
+    <script src="/js/script.js"></script>
+</body>
+</html>
