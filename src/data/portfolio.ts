@@ -95,7 +95,7 @@ export const projects: Project[] = [
     year: "2025 — now",
     role: "Design, build, operations",
     github: "https://github.com/Saboreq/Website",
-    live: "https://app.saboreq.xyz",
+    live: "https://files.saboreq.xyz",
     meta: "Live · invite-only",
     featured: true,
   },
