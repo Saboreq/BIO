@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { toast } from "sonner";
 import { Copy, Github, Mail, MessageCircle, Send } from "lucide-react";
-import { SabButton, SabCard, SectionLabel, StatusChip } from "./primitives";
+import { SabButton, SabCard, SectionLabel } from "./primitives";
 import { contact, projectTypes } from "@/data/portfolio";
 
 export function ContactSection() {
@@ -74,16 +74,14 @@ export function ContactSection() {
         <div className="absolute inset-0 sab-grid-bg opacity-25" />
       </div>
       <div className="mx-auto max-w-[1240px] px-5 md:px-8">
-        <SectionLabel>06 / CONTACT</SectionLabel>
+        <SectionLabel>04 / CONTACT</SectionLabel>
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-14">
           <div className="lg:col-span-5">
-            <h2 className="font-display text-[clamp(1.9rem,4vw,3.4rem)] font-semibold leading-[1.08] tracking-[-0.025em] text-sab-text">
+            <h2 className="font-display text-[clamp(1.8rem,3.6vw,3rem)] font-semibold leading-[1.08] tracking-[-0.025em] text-sab-text">
               Have a system worth building?
             </h2>
-            <p className="mt-5 text-[16px] leading-[1.75] text-sab-text-secondary max-w-[520px]">
-              Share what you are trying to create, improve, automate, or
-              operate. Include the goal, current state, constraints, and what a
-              successful result should look like.
+            <p className="mt-5 text-[16px] leading-[1.75] text-sab-text-secondary max-w-[480px]">
+              Tell me the goal, the current state, and what success looks like.
             </p>
             <div className="mt-8 space-y-3">
               <ContactCard
@@ -291,5 +289,3 @@ function ContactCard({
     </div>
   );
 }
-
-export { StatusChip };

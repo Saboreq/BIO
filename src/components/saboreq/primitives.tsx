@@ -25,40 +25,6 @@ export function SabCard({
   );
 }
 
-export function SystemPanel({
-  className,
-  label,
-  status,
-  children,
-}: {
-  className?: string;
-  label: string;
-  status?: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <div
-      className={cn(
-        "relative overflow-hidden rounded-2xl border border-sab-border bg-sab-bg-elev sab-top-edge",
-        className,
-      )}
-    >
-      <div className="flex items-center justify-between border-b border-sab-border bg-sab-bg-soft px-4 py-2.5">
-        <div className="flex items-center gap-2.5">
-          <span className="h-2.5 w-2.5 rounded-full bg-white/10" />
-          <span className="h-2.5 w-2.5 rounded-full bg-white/10" />
-          <span className="h-2.5 w-2.5 rounded-full bg-white/10" />
-          <span className="ml-3 font-mono text-[11px] tracking-wider text-sab-text-muted">
-            {label}
-          </span>
-        </div>
-        {status && <StatusChip tone="success">{status}</StatusChip>}
-      </div>
-      <div className="p-5">{children}</div>
-    </div>
-  );
-}
-
 export function StatusChip({
   children,
   tone = "neutral",

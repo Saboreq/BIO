@@ -32,19 +32,6 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
   --color-ring-offset-background: var(--background);
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
   --color-sab-bg: var(--sab-background);
   --color-sab-bg-soft: var(--sab-background-soft);
   --color-sab-bg-elev: var(--sab-background-elevated);
@@ -98,6 +85,8 @@
   --sab-warning: #f0b95a;
   --sab-danger: #ef7185;
 
+  --sab-ease: cubic-bezier(0.16, 1, 0.3, 1);
+
   --background: #050507;
   --foreground: #f7f7f8;
   --card: #0e0e14;
@@ -117,19 +106,6 @@
   --border: rgba(255, 255, 255, 0.08);
   --input: rgba(255, 255, 255, 0.13);
   --ring: #8b5cf6;
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: #0b0b10;
-  --sidebar-foreground: #f7f7f8;
-  --sidebar-primary: #8b5cf6;
-  --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #161620;
-  --sidebar-accent-foreground: #f7f7f8;
-  --sidebar-border: rgba(255, 255, 255, 0.08);
-  --sidebar-ring: #8b5cf6;
 }
 
 .dark {
@@ -142,6 +118,7 @@
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
+    scroll-behavior: smooth;
   }
 
   * {
@@ -153,6 +130,10 @@
     color: var(--sab-text);
     font-family: var(--font-sans);
     min-height: 100dvh;
+  }
+
+  section[id] {
+    scroll-margin-top: 76px;
   }
 
   ::selection {
@@ -210,8 +191,8 @@
   border-radius: 16px;
   position: relative;
   transition:
-    border-color 220ms cubic-bezier(0.16, 1, 0.3, 1),
-    transform 220ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 220ms var(--sab-ease),
+    transform 220ms var(--sab-ease),
     background-color 220ms;
 }
 
@@ -249,6 +230,283 @@
   color: var(--sab-text-muted);
 }
 
+/* ---------------------------------------------------------------------------
+   Skeleton placeholders — the Filehaven loading language: shimmering blocks
+   in the exact shape of the incoming layout.
+--------------------------------------------------------------------------- */
+
+.sk {
+  display: block;
+  border-radius: 6px;
+  background: linear-gradient(
+    100deg,
+    rgba(255, 255, 255, 0.04) 16%,
+    rgba(167, 139, 250, 0.13) 38%,
+    rgba(34, 211, 238, 0.07) 50%,
+    rgba(255, 255, 255, 0.04) 72%
+  );
+  background-size: 220% 100%;
+  animation: sab-shimmer 1.65s ease-in-out infinite;
+}
+
+.sk-stagger .sk:nth-of-type(2n) {
+  animation-delay: -0.42s;
+}
+.sk-stagger .sk:nth-of-type(3n) {
+  animation-delay: -0.84s;
+}
+
+@keyframes sab-shimmer {
+  to {
+    background-position: -200% 0;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Boot loading screen — first visit per session. A placeholder mirror of the
+   home page that settles into the real content. Controlled by a pre-paint
+   script that sets .sab-booting on <html>.
+--------------------------------------------------------------------------- */
+
+.sab-boot-overlay {
+  display: none;
+}
+
+html.sab-booting {
+  overflow: hidden;
+}
+
+html.sab-booting .sab-boot-overlay {
+  display: block;
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  overflow: hidden;
+  background: var(--sab-background);
+  opacity: 1;
+  transition: opacity 480ms ease;
+}
+
+html.sab-booting .sab-boot-overlay .sk {
+  animation-name: sab-shimmer;
+}
+
+html.sab-boot-leaving .sab-boot-overlay {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.sab-boot-brand {
+  position: absolute;
+  left: 50%;
+  bottom: 44px;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.sab-boot-line {
+  width: 148px;
+  height: 2px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.sab-boot-line-fill {
+  display: block;
+  height: 100%;
+  width: 100%;
+  transform-origin: left;
+  transform: scaleX(0);
+  background: linear-gradient(
+    90deg,
+    var(--sab-purple),
+    var(--sab-purple-bright)
+  );
+  animation: sab-boot-fill 1020ms cubic-bezier(0.4, 0.1, 0.3, 1) forwards;
+}
+
+@keyframes sab-boot-fill {
+  0% {
+    transform: scaleX(0);
+  }
+  55% {
+    transform: scaleX(0.68);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+/* Content settles in as the boot screen fades. */
+html.sab-revealing [data-reveal] {
+  animation: sab-rise 640ms var(--sab-ease) both;
+}
+html.sab-revealing [data-reveal="2"] {
+  animation-delay: 70ms;
+}
+html.sab-revealing [data-reveal="3"] {
+  animation-delay: 140ms;
+}
+html.sab-revealing [data-reveal="4"] {
+  animation-delay: 210ms;
+}
+html.sab-revealing [data-reveal="5"] {
+  animation-delay: 280ms;
+}
+html.sab-revealing [data-reveal="6"] {
+  animation-delay: 350ms;
+}
+
+@keyframes sab-rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   View transitions — direction-aware page animations plus shared-element
+   morphs (project row -> detail header, titles, prev/next chips).
+   Types are set by the router: vt-forward, vt-back, vt-lateral, vt-none.
+--------------------------------------------------------------------------- */
+
+/* Persistent chrome keeps its own snapshot so page content moves beneath it. */
+.vt-header {
+  view-transition-name: sab-header;
+}
+.vt-progress {
+  view-transition-name: sab-progress;
+}
+.vt-fab {
+  view-transition-name: sab-fab;
+}
+.vt-noise {
+  view-transition-name: sab-noise;
+}
+[data-sonner-toaster] {
+  view-transition-name: sab-toasts;
+}
+
+/* Shared project elements. The unique view-transition-name is set inline. */
+.vt-share {
+  view-transition-class: sab-share;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  ::view-transition-old(root) {
+    animation: sab-vt-out 260ms cubic-bezier(0.4, 0, 0.2, 1) both;
+  }
+  ::view-transition-new(root) {
+    animation: sab-vt-in 420ms 30ms var(--sab-ease) both;
+  }
+
+  html:active-view-transition-type(vt-forward)::view-transition-old(root) {
+    animation-name: sab-vt-out-up;
+  }
+  html:active-view-transition-type(vt-forward)::view-transition-new(root) {
+    animation-name: sab-vt-in-up;
+  }
+
+  html:active-view-transition-type(vt-back)::view-transition-old(root) {
+    animation-name: sab-vt-out-down;
+  }
+  html:active-view-transition-type(vt-back)::view-transition-new(root) {
+    animation-name: sab-vt-in-down;
+  }
+
+  html:active-view-transition-type(vt-lateral)::view-transition-old(root) {
+    animation-name: sab-vt-out-left;
+  }
+  html:active-view-transition-type(vt-lateral)::view-transition-new(root) {
+    animation-name: sab-vt-in-left;
+  }
+
+  html:active-view-transition-type(vt-none)::view-transition-old(root),
+  html:active-view-transition-type(vt-none)::view-transition-new(root) {
+    animation-duration: 0.01ms;
+    animation-delay: 0ms;
+  }
+
+  ::view-transition-group(.sab-share) {
+    animation-duration: 460ms;
+    animation-timing-function: var(--sab-ease);
+  }
+
+  /* Shared elements without a counterpart on the other page exit/enter in
+     step with the root animation instead of hanging in place. */
+  ::view-transition-old(.sab-share):only-child {
+    animation: sab-vt-out 220ms cubic-bezier(0.4, 0, 0.2, 1) both;
+  }
+  ::view-transition-new(.sab-share):only-child {
+    animation: sab-vt-in 360ms 60ms var(--sab-ease) both;
+  }
+}
+
+@keyframes sab-vt-out {
+  to {
+    opacity: 0;
+  }
+}
+@keyframes sab-vt-in {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes sab-vt-out-up {
+  to {
+    opacity: 0;
+    transform: translateY(-18px) scale(0.993);
+  }
+}
+@keyframes sab-vt-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(26px) scale(0.993);
+  }
+}
+@keyframes sab-vt-out-down {
+  to {
+    opacity: 0;
+    transform: translateY(22px) scale(0.993);
+  }
+}
+@keyframes sab-vt-in-down {
+  from {
+    opacity: 0;
+    transform: translateY(-26px) scale(0.993);
+  }
+}
+@keyframes sab-vt-out-left {
+  to {
+    opacity: 0;
+    transform: translateX(-34px);
+  }
+}
+@keyframes sab-vt-in-left {
+  from {
+    opacity: 0;
+    transform: translateX(38px);
+  }
+}
+
+/* Slow pulse used by artwork focal dots. */
+.sab-pulse {
+  animation: sab-pulse 2.6s ease-in-out infinite;
+}
+@keyframes sab-pulse {
+  0%,
+  100% {
+    opacity: 0.95;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -257,5 +515,12 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
+  }
+
+  ::view-transition-group(*),
+  ::view-transition-image-pair(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
   }
 }

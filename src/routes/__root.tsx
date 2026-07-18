@@ -9,29 +9,36 @@ import {
 } from "@tanstack/react-router";
 import { type ReactNode } from "react";
 
+import { Toaster } from "@/components/ui/sonner";
+import { Navigation } from "@/components/saboreq/Navigation";
+import { Footer } from "@/components/saboreq/Sections";
+import { BackToTop, EasterEgg, SkipLink } from "@/components/saboreq/Extras";
+import { BootGate, bootScript } from "@/components/saboreq/BootGate";
+
 import appCss from "../styles.css?url";
 
 function NotFoundComponent() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
+    <main className="flex min-h-[70vh] items-center justify-center px-4">
       <div className="max-w-md text-center">
-        <h1 className="text-7xl font-bold text-foreground">404</h1>
-        <h2 className="mt-4 text-xl font-semibold text-foreground">
+        <p className="sab-label">404</p>
+        <h1 className="mt-3 font-display text-3xl font-semibold text-sab-text">
           Page not found
-        </h2>
-        <p className="mt-2 text-sm text-muted-foreground">
-          The page you're looking for doesn't exist or has been moved.
+        </h1>
+        <p className="mt-2 text-sm text-sab-text-secondary">
+          This page doesn't exist or has moved.
         </p>
         <div className="mt-6">
           <Link
             to="/"
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+            viewTransition
+            className="inline-flex h-10 items-center justify-center rounded-[10px] bg-sab-purple px-4 text-sm font-medium text-white transition-colors hover:bg-sab-purple-light"
           >
-            Go home
+            Back home
           </Link>
         </div>
       </div>
-    </div>
+    </main>
   );
 }
 
@@ -39,14 +46,13 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   console.error(error);
   const router = useRouter();
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
+    <main className="flex min-h-[70vh] items-center justify-center px-4">
       <div className="max-w-md text-center">
-        <h1 className="text-xl font-semibold tracking-tight text-foreground">
+        <h1 className="font-display text-xl font-semibold text-sab-text">
           This page didn't load
         </h1>
-        <p className="mt-2 text-sm text-muted-foreground">
-          Something went wrong on our end. You can try refreshing or head back
-          home.
+        <p className="mt-2 text-sm text-sab-text-secondary">
+          Something went wrong on this end. Try again or head back home.
         </p>
         <div className="mt-6 flex flex-wrap justify-center gap-2">
           <button
@@ -54,19 +60,19 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
               router.invalidate();
               reset();
             }}
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+            className="inline-flex h-10 items-center justify-center rounded-[10px] bg-sab-purple px-4 text-sm font-medium text-white transition-colors hover:bg-sab-purple-light"
           >
             Try again
           </button>
           <a
             href="/"
-            className="inline-flex items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-accent"
+            className="inline-flex h-10 items-center justify-center rounded-[10px] border border-sab-border bg-sab-bg-elev px-4 text-sm font-medium text-sab-text transition-colors hover:border-sab-border-purple"
           >
             Go home
           </a>
         </div>
       </div>
-    </div>
+    </main>
   );
 }
 
@@ -118,6 +124,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         },
       ],
       scripts: [
+        { children: bootScript },
         {
           type: "application/ld+json",
           children: JSON.stringify({
@@ -148,7 +155,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <HeadContent />
       </head>
@@ -165,7 +172,22 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Outlet />
+      <div className="flex min-h-dvh flex-col bg-sab-bg text-sab-text selection:bg-sab-purple/40">
+        <SkipLink />
+        <BootGate />
+        <Navigation />
+        <div className="flex-1">
+          <Outlet />
+        </div>
+        <Footer />
+        <BackToTop />
+        <EasterEgg />
+        <Toaster position="bottom-right" theme="dark" />
+        <div
+          className="sab-noise vt-noise pointer-events-none fixed inset-0 z-[90]"
+          aria-hidden="true"
+        />
+      </div>
     </QueryClientProvider>
   );
 }
