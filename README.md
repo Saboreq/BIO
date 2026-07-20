@@ -1,27 +1,27 @@
 # Saboreq Portfolio
 
-The source code for [saboreq.xyz](https://saboreq.xyz), a professional portfolio for focused software services and public project case studies.
+The source code for [saboreq.xyz](https://saboreq.xyz), the client-facing website for **Saboreq**, a software development company delivering focused digital products for clients worldwide.
 
-## Positioning
+## Purpose
 
-The site presents Saboreq as an independent software developer available for clearly scoped commercial projects:
+The site presents four clearly scoped services:
 
 - professional websites;
 - web applications;
-- Windows tools built with C#, .NET, WinForms, and related technologies;
-- Roblox systems built with Luau and server-authoritative patterns.
+- Windows tools built with C#, .NET, and WinForms;
+- Roblox systems built with Luau and server-side validation.
 
-The portfolio intentionally excludes unrelated hobby projects and avoids presenting broad technology lists without a clear service outcome.
+It combines project case studies, estimated pricing, and a direct quote flow without mixing in unrelated hobby work.
 
 ## Public case studies
 
-- **SabHaven** — An invite-only file portal with Supabase Auth, Postgres and Storage row-level security, role-aware administration, private object storage, short-lived signed downloads, and server-side invite handling.
-- **SabTrace** — A cross-platform C++20 command-line log analyser with level, literal, and regex filtering; terminal statistics; JSON reports; dependency-free tests; cross-platform GitHub Actions; and versioned release archives with SHA-256 checksums.
-- **Saboreq Portfolio** — The responsive React and TypeScript website in this repository, including project pages, service positioning, USD-first estimated pricing, current EUR conversion, metadata, structured data, and Vercel deployment.
+- **SabHaven** — An invite-only file portal for controlled public downloads and owner-only private storage.
+- **SabTrace** — A lightweight cross-platform log analysis tool with severity, text, and regular-expression filtering, terminal summaries, JSON reports, and versioned downloads.
+- **Saboreq Portfolio** — The responsive company website in this repository, including service positioning, project pages, estimated pricing, metadata, and deployment.
 
 ## Pricing model
 
-USD is the canonical display currency. EUR estimates are converted in the browser using the latest available daily USD/EUR rate, with a dated fallback value when the external rate cannot be reached.
+USD is the primary display currency. EUR estimates use the latest available daily USD/EUR reference rate, with a dated fallback when the external rate cannot be reached.
 
 Displayed values are estimates only. A written quote is provided after the project scope, complexity, integrations, supplied assets, and deadline are understood.
 
@@ -33,8 +33,6 @@ Displayed values are estimates only. A written quote is provided after the proje
 - Vite
 - Tailwind CSS 4
 - Nitro
-- Lucide React
-- Sonner
 
 ## Local development
 
@@ -67,13 +65,12 @@ npm run format
 
 The project is configured for Vercel through Nitro.
 
-1. Push the repository to GitHub.
-2. Import the repository into Vercel.
-3. Keep the root directory set to the repository root.
-4. Leave install, build, and output settings on automatic detection.
-5. Add `saboreq.xyz` and `www.saboreq.xyz` in Vercel domain settings.
+1. Import the repository into Vercel.
+2. Keep the repository root as the project root.
+3. Leave install, build, and output settings on automatic detection.
+4. Add `saboreq.xyz` and `www.saboreq.xyz` in Vercel domain settings.
 
-Future pushes to `main` trigger production deployments.
+Pushes to `main` trigger production deployments.
 
 ## Project structure
 
@@ -83,15 +80,13 @@ src/components/saboreq/ Portfolio sections and reusable interface elements
 src/components/ui/       Toast interface
 src/data/portfolio.ts    Brand, projects, services, pricing, and contact data
 src/lib/                 Utilities and server error handling
-src/routes/              TanStack Start routes and metadata
+src/routes/              Routes, metadata, and project pages
 src/styles.css           Theme tokens and global styles
-vite.config.ts           Vite, TanStack Start, Tailwind, Nitro, and React setup
+vite.config.ts           Application and deployment configuration
 ```
 
 ## Accuracy and privacy
 
-Portfolio claims remain tied to implemented work. Security wording for SabHaven describes concrete controls rather than claiming independent certification, end-to-end encryption, or complete protection.
+Public claims remain tied to implemented and tested work. Security wording for SabHaven describes concrete controls and documented limitations rather than claiming independent certification or complete protection.
 
-SabTrace release wording reflects the verified `v0.1.0` source build and uploaded Linux release archive rather than untested platform claims.
-
-The public portfolio avoids exposing credentials, private hostnames, internal ports, customer data, or other operational secrets.
+The repository avoids exposing credentials, private hostnames, internal ports, customer data, or other operational secrets.

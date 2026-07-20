@@ -52,7 +52,7 @@ export function WorkSection() {
             Production work, explained clearly.
           </h2>
           <p className="text-[14px] text-sab-text-muted">
-            Live projects with technical breakdowns and source links.
+            Selected products with clear outcomes and implementation details.
           </p>
         </div>
 
@@ -343,9 +343,10 @@ export function AboutSection() {
               <span className="text-sab-text-secondary">Reliable delivery.</span>
             </h2>
             <p className="mt-6 max-w-[590px] text-[16px] leading-[1.75] text-sab-text-secondary">
-              I am an independent software developer working through a registered
-              Polish business. I build focused websites, web applications, Windows
-              tools, and Roblox systems for English-speaking clients worldwide.
+              I run Saboreq, a software development company serving clients
+              worldwide. I personally handle project scope, development, testing,
+              and delivery for websites, web applications, Windows tools, and
+              Roblox systems.
             </p>
             <p className="mt-6 flex items-center gap-2.5 font-mono text-[11.5px] uppercase tracking-[0.14em] text-sab-text-muted">
               <span className="h-1.5 w-1.5 rounded-full bg-sab-success shadow-[0_0_0_3px_rgba(105,214,163,0.15)]" />
@@ -387,7 +388,7 @@ export function Footer() {
             S<span className="text-sab-purple">/</span>
           </span>
           <span className="text-[13px] text-sab-text-secondary">
-            © {new Date().getFullYear()} saboreq.xyz
+            © {new Date().getFullYear()} Saboreq
           </span>
         </div>
         <nav
