@@ -62,6 +62,30 @@ function SabHavenPiece({ accent, edge }: PieceProps) {
   );
 }
 
+function SabTracePiece({ accent, edge }: PieceProps) {
+  return (
+    <g fill="none" strokeWidth="1.25">
+      <rect x="76" y="62" width="488" height="236" rx="18" stroke={edge} fill="rgba(8,12,11,0.9)" />
+      <path d="M76 106 H564" stroke={lineSoft} />
+      <circle cx="104" cy="84" r="4" fill={accent} opacity="0.9" />
+      <circle cx="122" cy="84" r="4" fill="rgba(247,247,248,0.2)" />
+      <circle cx="140" cy="84" r="4" fill="rgba(247,247,248,0.12)" />
+      <path d="M108 140 h76" stroke={accent} strokeOpacity="0.85" strokeLinecap="round" />
+      <path d="M196 140 h178" stroke={line} strokeLinecap="round" />
+      <path d="M108 172 h48" stroke="#fbbf24" strokeOpacity="0.8" strokeLinecap="round" />
+      <path d="M168 172 h248" stroke={lineSoft} strokeLinecap="round" />
+      <path d="M108 204 h58" stroke="#f87171" strokeOpacity="0.9" strokeLinecap="round" />
+      <path d="M178 204 h212" stroke={line} strokeLinecap="round" />
+      <path d="M108 236 h58" stroke="#f87171" strokeOpacity="0.9" strokeLinecap="round" />
+      <path d="M178 236 h252" stroke={line} strokeLinecap="round" />
+      <path d="M108 268 h92" stroke={accent} strokeOpacity="0.7" strokeLinecap="round" />
+      <path d="M214 268 h132" stroke={lineSoft} strokeLinecap="round" />
+      <rect x="454" y="132" width="76" height="128" rx="10" stroke={lineSoft} fill={fillSoft} />
+      <path d="M472 230 V198 M490 230 V176 M508 230 V152" stroke={accent} strokeLinecap="round" />
+    </g>
+  );
+}
+
 function PortfolioPiece({ accent, edge }: PieceProps) {
   return (
     <g fill="none" strokeWidth="1.25">
@@ -83,5 +107,6 @@ function PortfolioPiece({ accent, edge }: PieceProps) {
 
 const PIECES: Record<ArtworkId, (props: PieceProps) => React.ReactNode> = {
   sabhaven: SabHavenPiece,
+  sabtrace: SabTracePiece,
   portfolio: PortfolioPiece,
 };

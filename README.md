@@ -16,6 +16,7 @@ The portfolio intentionally excludes unrelated hobby projects and avoids present
 ## Public case studies
 
 - **SabHaven** — An invite-only file portal with Supabase Auth, Postgres and Storage row-level security, role-aware administration, private object storage, short-lived signed downloads, and server-side invite handling.
+- **SabTrace** — A cross-platform C++20 command-line log analyser with level, literal, and regex filtering; terminal statistics; JSON reports; dependency-free tests; cross-platform GitHub Actions; and versioned release archives with SHA-256 checksums.
 - **Saboreq Portfolio** — The responsive React and TypeScript website in this repository, including project pages, service positioning, USD-first estimated pricing, current EUR conversion, metadata, structured data, and Vercel deployment.
 
 ## Pricing model
@@ -90,5 +91,7 @@ vite.config.ts           Vite, TanStack Start, Tailwind, Nitro, and React setup
 ## Accuracy and privacy
 
 Portfolio claims remain tied to implemented work. Security wording for SabHaven describes concrete controls rather than claiming independent certification, end-to-end encryption, or complete protection.
+
+SabTrace release wording reflects the verified `v0.1.0` source build and uploaded Linux release archive rather than untested platform claims.
 
 The public portfolio avoids exposing credentials, private hostnames, internal ports, customer data, or other operational secrets.

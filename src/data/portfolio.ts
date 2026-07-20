@@ -22,7 +22,7 @@ export const nav = [
 ];
 
 export type ProjectStatus = "OPERATIONAL" | "IN DEVELOPMENT" | "EXPERIMENTAL";
-export type ArtworkId = "sabhaven" | "portfolio";
+export type ArtworkId = "sabhaven" | "sabtrace" | "portfolio";
 
 export interface ProjectSection {
   title: string;
@@ -94,6 +94,49 @@ export const projects: Project[] = [
     live: "https://files.saboreq.xyz",
     meta: "Live · invite-only",
     featured: true,
+  },
+  {
+    id: "sabtrace",
+    name: "SabTrace",
+    category: "C++ Command-line Tool",
+    status: "OPERATIONAL",
+    summary: "Cross-platform log filtering, statistics, and JSON reporting in C++20.",
+    intro:
+      "A standalone, script-friendly log analyser that reads files or standard input, detects common severity levels, applies literal or regular-expression filters, and produces terminal statistics or structured JSON reports.",
+    sections: [
+      {
+        title: "Command-line product",
+        bullets: [
+          "Plain-text analysis from multiple files or standard input",
+          "Level, literal text, regex, case-insensitive, and result-limit filters",
+          "Predictable exit codes for shell scripts and CI workflows",
+        ],
+      },
+      {
+        title: "Engineering",
+        bullets: [
+          "Modern C++20 with a separated core library and CLI layer",
+          "Dependency-free tests for parsing, matching, limits, and JSON output",
+          "CMake build, install rules, presets, and compiler warnings",
+        ],
+      },
+      {
+        title: "Delivery",
+        bullets: [
+          "GitHub Actions validation on GCC, MSVC, and Clang",
+          "Versioned Windows, Linux, and macOS release archives",
+          "Published SHA-256 checksums and verified Linux release binary",
+        ],
+      },
+    ],
+    tech: ["C++20", "CMake", "GitHub Actions", "GCC", "MSVC", "Clang"],
+    artwork: "sabtrace",
+    accent: "#69d6a3",
+    accentSoft: "rgba(105, 214, 163, 0.14)",
+    year: "2026",
+    role: "Product, architecture, CLI, testing, release engineering",
+    github: "https://github.com/Saboreq/SabTrace",
+    meta: "v0.1.0 · open source",
   },
   {
     id: "portfolio",
