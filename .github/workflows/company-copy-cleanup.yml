@@ -1,0 +1,57 @@
+name: Apply company copy cleanup
+
+on:
+  push:
+    branches:
+      - agent/professional-company-positioning
+
+permissions:
+  contents: write
+
+jobs:
+  update-copy:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/professional-company-positioning
+
+      - name: Replace public company copy
+        shell: python
+        run: |
+          from pathlib import Path
+
+          path = Path("src/components/saboreq/Sections.tsx")
+          text = path.read_text(encoding="utf-8")
+
+          replacements = {
+              "Live projects with technical breakdowns and source links.":
+                  "Selected products with clear outcomes and implementation details.",
+              "I am an independent software developer working through a registered\n"
+              "              Polish business. I build focused websites, web applications, Windows\n"
+              "              tools, and Roblox systems for English-speaking clients worldwide.":
+                  "I run Saboreq, a software development company serving clients\n"
+                  "              worldwide. I personally handle project scope, development, testing,\n"
+                  "              and delivery for websites, web applications, Windows tools, and\n"
+                  "              Roblox systems.",
+              "© {new Date().getFullYear()} saboreq.xyz":
+                  "© {new Date().getFullYear()} Saboreq",
+          }
+
+          for old, new in replacements.items():
+              if old not in text:
+                  raise SystemExit(f"Expected text not found: {old!r}")
+              text = text.replace(old, new, 1)
+
+          path.write_text(text, encoding="utf-8")
+          Path(".github/workflows/company-copy-cleanup.yml").unlink()
+
+      - name: Commit cleanup
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/components/saboreq/Sections.tsx .github/workflows/company-copy-cleanup.yml
+          git commit -m "Refine company copy in portfolio sections"
+          git push
