@@ -82,11 +82,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       meta: [
         { charSet: "utf-8" },
         { name: "viewport", content: "width=device-width, initial-scale=1" },
-        { title: "Saboreq — Websites, Web Apps, .NET Tools & Roblox Systems" },
+        { title: "Saboreq — Custom Software, Websites & Digital Products" },
         {
           name: "description",
           content:
-            "Independent software developer building professional websites, web applications, Windows .NET tools, and Roblox systems for English-speaking clients worldwide.",
+            "Saboreq is a software development company building professional websites, web applications, Windows .NET tools, and Roblox systems for clients worldwide.",
         },
         { name: "author", content: "Saboreq" },
         { name: "theme-color", content: "#050507" },
@@ -97,7 +97,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         {
           property: "og:description",
           content:
-            "Professional websites, web applications, Windows .NET tools, and Roblox systems with clear scope and estimated pricing.",
+            "Custom websites, web applications, Windows .NET tools, and Roblox systems with clear scope, direct communication, and accountable delivery.",
         },
         { property: "og:type", content: "website" },
         { property: "og:site_name", content: "Saboreq" },
@@ -133,10 +133,17 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
             "@context": "https://schema.org",
             "@graph": [
               {
-                "@type": "Person",
+                "@type": "Organization",
                 name: "Saboreq",
                 url: "https://saboreq.xyz",
-                jobTitle: "Independent Software Developer",
+                email: "contact@saboreq.xyz",
+                description:
+                  "Software development company building websites, web applications, Windows tools, and Roblox systems.",
+                founder: {
+                  "@type": "Person",
+                  name: "Saboreq",
+                  jobTitle: "Software Developer",
+                },
                 knowsAbout: [
                   "Professional websites",
                   "Web applications",
@@ -154,6 +161,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
                 "@type": "WebSite",
                 name: "Saboreq",
                 url: "https://saboreq.xyz",
+                publisher: {
+                  "@type": "Organization",
+                  name: "Saboreq",
+                },
               },
             ],
           }),
