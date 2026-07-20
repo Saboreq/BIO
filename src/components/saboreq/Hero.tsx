@@ -42,7 +42,7 @@ export function Hero() {
           className="flex items-center gap-2.5 font-mono text-[11.5px] uppercase tracking-[0.14em] text-sab-text-muted"
         >
           <span className="h-1.5 w-1.5 rounded-full bg-sab-success shadow-[0_0_0_3px_rgba(105,214,163,0.15)]" />
-          Independent software developer · accepting scoped projects
+          Saboreq software company · accepting scoped projects
         </p>
         <h1
           data-reveal="2"
@@ -63,8 +63,8 @@ export function Hero() {
           data-reveal="3"
           className="mt-7 max-w-[720px] text-[17px] leading-[1.7] text-sab-text-secondary"
         >
-          Professional websites, web applications, Windows .NET tools, and
-          Roblox systems for English-speaking clients worldwide.
+          I run Saboreq, delivering professional websites, web applications,
+          Windows .NET tools, and Roblox systems for clients worldwide.
         </p>
         <div data-reveal="4" className="mt-9 flex flex-wrap items-center gap-3">
           <SabLinkButton href="#work" variant="primary">
