@@ -46,9 +46,9 @@ export function Hero() {
         </p>
         <h1
           data-reveal="2"
-          className="mt-6 max-w-[920px] font-display text-[clamp(2.6rem,6.5vw,5.6rem)] font-semibold leading-[1.03] tracking-[-0.03em] text-sab-text"
+          className="mt-6 max-w-[940px] font-display text-[clamp(2.6rem,6.5vw,5.6rem)] font-semibold leading-[1.03] tracking-[-0.03em] text-sab-text"
         >
-          I build practical software that{" "}
+          Focused software built to{" "}
           <span
             className="bg-clip-text text-transparent"
             style={{
@@ -56,23 +56,26 @@ export function Hero() {
                 "linear-gradient(120deg, #f7f7f8 30%, #a78bfa 100%)",
             }}
           >
-            ships.
+            solve a real problem.
           </span>
         </h1>
         <p
           data-reveal="3"
-          className="mt-7 max-w-[690px] text-[17px] leading-[1.7] text-sab-text-secondary"
+          className="mt-7 max-w-[720px] text-[17px] leading-[1.7] text-sab-text-secondary"
         >
-          Custom Windows tools, web applications, Roblox and Minecraft systems,
-          automation, and the infrastructure behind them.
+          Professional websites, web applications, Windows .NET tools, and
+          Roblox systems for English-speaking clients worldwide.
         </p>
         <div data-reveal="4" className="mt-9 flex flex-wrap items-center gap-3">
           <SabLinkButton href="#work" variant="primary">
             View projects
             <ArrowRight className="h-4 w-4" />
           </SabLinkButton>
+          <SabLinkButton href="#pricing" variant="secondary">
+            View estimates
+          </SabLinkButton>
           <SabLinkButton href="#contact" variant="secondary">
-            Discuss a project
+            Request a quote
           </SabLinkButton>
           <div className="ml-1 flex items-center gap-2">
             {contact.github && (
