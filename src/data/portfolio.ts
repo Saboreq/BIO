@@ -3,7 +3,7 @@ export const brand = {
   wordmark: "saboreq",
   symbol: "S/",
   domain: "saboreq.xyz",
-  tagline: "Software, game systems, automation, and infrastructure.",
+  tagline: "Custom software, game systems, automation, and infrastructure.",
 };
 
 export const contact = {
@@ -15,6 +15,7 @@ export const contact = {
 
 export const nav = [
   { label: "Work", hash: "work" },
+  { label: "Capabilities", hash: "capabilities" },
   { label: "About", hash: "about" },
   { label: "Contact", hash: "contact" },
 ];
@@ -56,45 +57,45 @@ export interface Project {
 export const projects: Project[] = [
   {
     id: "filehaven",
-    name: "Filehaven",
-    category: "Web Platform",
+    name: "SabHaven",
+    category: "File Platform",
     status: "OPERATIONAL",
-    summary: "Invite-only file sharing with row-level-secured private storage.",
+    summary: "Invite-only file portal with server-enforced private storage.",
     intro:
-      "An invite-only file platform that keeps public downloads and owner-only private storage strictly apart — enforced in the database, not the UI.",
+      "A production file portal that separates public downloads from owner-only private storage, with authorization enforced in Postgres and object storage rather than trusted to the interface.",
     sections: [
       {
-        title: "What it does",
+        title: "Product",
         bullets: [
-          "Public download area for released files",
-          "Owner-only private storage next to it",
-          "Invite-gated membership, no open signups",
+          "Anonymous browsing and short-lived public downloads",
+          "Invite-only accounts, member uploads, and virtual folders",
+          "Owner/admin dashboard for roles and scoped invitations",
         ],
       },
       {
-        title: "How privacy is enforced",
+        title: "Security architecture",
         bullets: [
-          "Postgres row-level security on every table",
-          "Short-lived signed URLs for downloads",
-          "No client-side-only access checks",
+          "Postgres and Storage row-level security",
+          "Complete private-ancestor ownership checks",
+          "Hashed invites and service-role Edge Functions",
         ],
       },
       {
-        title: "Build notes",
+        title: "Engineering",
         bullets: [
-          "React + TypeScript front end",
-          "Supabase auth, storage, and database",
-          "Deployed and in daily use",
+          "React and TypeScript interface deployed on Vercel",
+          "Private Supabase bucket with 60-second signed URLs",
+          "Source-level tests for authorization boundaries",
         ],
       },
     ],
-    tech: ["React", "TypeScript", "Supabase", "PostgreSQL"],
+    tech: ["React", "TypeScript", "Supabase", "PostgreSQL", "RLS", "Edge Functions"],
     artwork: "filehaven",
     accent: "#a78bfa",
     accentSoft: "rgba(139, 92, 246, 0.16)",
-    year: "2025 — now",
-    role: "Design, build, operations",
-    github: "https://github.com/Saboreq/Website",
+    year: "2026 — now",
+    role: "Product, frontend, data model, security",
+    github: "https://github.com/Saboreq/SabHaven",
     live: "https://files.saboreq.xyz",
     meta: "Live · invite-only",
     featured: true,
@@ -113,15 +114,15 @@ export const projects: Project[] = [
         bullets: [
           "Paper plugin exposing server operations",
           "Discord automation for routine actions",
-          "Control interface for day-to-day admin",
+          "Control interface for day-to-day administration",
         ],
       },
       {
         title: "Design goals",
         bullets: [
-          "Safe operations over raw console access",
-          "Modules stay independent and replaceable",
-          "One clear path for every action",
+          "Safe operations instead of unrestricted console access",
+          "Independent and replaceable modules",
+          "A clear, auditable path for each action",
         ],
       },
     ],
@@ -141,7 +142,7 @@ export const projects: Project[] = [
     summary:
       "PaperMC team system with invites, costs, and persistent identity.",
     intro:
-      "A custom PaperMC team plugin: creation, invitations, configurable costs, persistent data, and team tags carried in player identity.",
+      "A custom PaperMC team plugin covering creation, invitations, configurable costs, persistent data, and team tags carried in player identity.",
     sections: [
       {
         title: "Features",
@@ -155,8 +156,8 @@ export const projects: Project[] = [
         title: "Under the hood",
         bullets: [
           "SQL-backed persistent team data",
-          "Gradle build, PaperMC API",
-          "Survives restarts and player churn",
+          "Gradle build and PaperMC API integration",
+          "State designed to survive restarts and player churn",
         ],
       },
     ],
@@ -175,13 +176,13 @@ export const projects: Project[] = [
     status: "IN DEVELOPMENT",
     summary: "Multiplayer horror with procedural rooms and a pursuing entity.",
     intro:
-      "A multiplayer horror experience built on procedurally assembled rooms, a pursuing entity, and survival systems the server — not the client — decides.",
+      "A multiplayer horror experience built on procedurally assembled rooms, a pursuing entity, and survival systems decided by the server rather than trusted to the client.",
     sections: [
       {
         title: "Systems",
         bullets: [
           "Procedural room assembly per run",
-          "Entity that hunts across the layout",
+          "Entity behaviour across the generated layout",
           "Survival loop with shared objectives",
         ],
       },
@@ -189,8 +190,8 @@ export const projects: Project[] = [
         title: "Architecture",
         bullets: [
           "Server-authoritative state and validation",
-          "Luau, structured around clear modules",
-          "Multiplayer-first from the start",
+          "Luau modules with clear responsibilities",
+          "Multiplayer-first system design",
         ],
       },
     ],
@@ -214,8 +215,8 @@ export const projects: Project[] = [
       {
         title: "Topology",
         bullets: [
-          "Cloudflare DNS in front of everything",
-          "Nginx reverse proxy per service",
+          "Cloudflare DNS in front of public services",
+          "Nginx reverse proxy per application",
           "Pterodactyl panel driving game nodes",
         ],
       },
@@ -223,8 +224,8 @@ export const projects: Project[] = [
         title: "Operations",
         bullets: [
           "Containerised services on Ubuntu",
-          "Monitoring and secure remote access",
-          "Hosts the projects on this site",
+          "Monitoring and controlled remote access",
+          "Production hosting for projects on this site",
         ],
       },
     ],
@@ -233,8 +234,8 @@ export const projects: Project[] = [
     accent: "#69d6a3",
     accentSoft: "rgba(105, 214, 163, 0.1)",
     year: "Ongoing",
-    role: "Setup, operations",
-    meta: "Internal tooling",
+    role: "Setup, deployment, operations",
+    meta: "Internal infrastructure",
   },
 ];
 
@@ -256,34 +257,35 @@ export function adjacentProjects(id: string): {
 
 export const capabilities = [
   {
-    title: "Software",
-    summary: "Web interfaces backed by real APIs and typed data.",
-    items: ["React", "TypeScript", "Node.js", "Python", "PostgreSQL"],
+    title: "Custom software",
+    summary: "Windows tools and web applications built around a clear operational goal.",
+    items: ["C#", ".NET", "WinForms", "C++", "React", "TypeScript"],
   },
   {
     title: "Game systems",
-    summary: "Server-authoritative gameplay on Roblox and PaperMC.",
-    items: ["Luau", "Java", "PaperMC", "Multiplayer", "Procedural"],
+    summary: "Server-authoritative gameplay and tooling for Roblox and PaperMC.",
+    items: ["Luau", "Java", "PaperMC", "Multiplayer", "Persistence"],
   },
   {
-    title: "Infrastructure",
-    summary: "Self-hosted Linux, containers, and automation with AI APIs.",
-    items: ["Ubuntu", "Docker", "Nginx", "Cloudflare", "AI APIs"],
+    title: "Infrastructure & automation",
+    summary: "Databases, deployment, integrations, and repeatable operational workflows.",
+    items: ["PostgreSQL", "Ubuntu", "Docker", "Nginx", "Cloudflare", "AI APIs"],
   },
 ];
 
 export const currentFocus = [
-  { label: "Filehaven file sharing platform", state: "LIVE" as const },
-  { label: "Roblox multiplayer horror experience", state: "BUILDING" as const },
+  { label: "Custom Windows and .NET software", state: "AVAILABLE" as const },
+  { label: "SabHaven file platform", state: "LIVE" as const },
+  { label: "Roblox multiplayer systems", state: "BUILDING" as const },
   { label: "Minecraft plugins and server tooling", state: "BUILDING" as const },
-  { label: "Self-hosted game infrastructure", state: "ACTIVE" as const },
 ];
 
 export const projectTypes = [
-  "Software",
-  "Minecraft",
-  "Roblox",
+  "Windows / .NET tool",
+  "Web application",
+  "Roblox system",
+  "Minecraft plugin",
+  "Automation / integration",
   "Infrastructure",
-  "Automation",
   "Other",
 ];
