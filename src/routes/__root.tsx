@@ -82,25 +82,26 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       meta: [
         { charSet: "utf-8" },
         { name: "viewport", content: "width=device-width, initial-scale=1" },
-        { title: "Saboreq — Software, Game Systems, AI & Infrastructure" },
+        { title: "Saboreq — Custom Software, Game Systems & Infrastructure" },
         {
           name: "description",
           content:
-            "Independent developer building web applications, Minecraft tooling, Roblox systems, Discord automation, and self-hosted infrastructure.",
+            "Independent software developer building custom Windows tools, web applications, Roblox and Minecraft systems, automation, and self-hosted infrastructure.",
         },
         { name: "author", content: "Saboreq" },
         { name: "theme-color", content: "#050507" },
         {
           property: "og:title",
-          content: "Saboreq — Software, Game Systems, AI & Infrastructure",
+          content: "Saboreq — Custom Software, Game Systems & Infrastructure",
         },
         {
           property: "og:description",
           content:
-            "Independent developer building web applications, Minecraft tooling, Roblox systems, Discord automation, and self-hosted infrastructure.",
+            "Custom Windows tools, web applications, game systems, automation, and production infrastructure.",
         },
         { property: "og:type", content: "website" },
         { property: "og:site_name", content: "Saboreq" },
+        { property: "og:url", content: "https://saboreq.xyz" },
         { name: "twitter:card", content: "summary_large_image" },
       ],
       links: [
@@ -109,6 +110,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           href: appCss,
         },
         { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
+        { rel: "canonical", href: "https://saboreq.xyz" },
         {
           rel: "preconnect",
           href: "https://fonts.googleapis.com",
@@ -135,6 +137,17 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
                 name: "Saboreq",
                 url: "https://saboreq.xyz",
                 jobTitle: "Independent Software Developer",
+                knowsAbout: [
+                  "C#",
+                  ".NET",
+                  "C++",
+                  "React",
+                  "TypeScript",
+                  "Roblox Luau",
+                  "PaperMC",
+                  "Linux infrastructure",
+                ],
+                sameAs: ["https://github.com/Saboreq"],
               },
               {
                 "@type": "WebSite",
