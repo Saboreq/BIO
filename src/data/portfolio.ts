@@ -151,7 +151,8 @@ export function adjacentProjects(id: string): {
   prev: Project | undefined;
   next: Project | undefined;
 } {
-  const index = projects.findIndex((project) => project.id === id);
+  const normalizedId = id === "filehaven" ? "sabhaven" : id;
+  const index = projects.findIndex((project) => project.id === normalizedId);
   if (index === -1) return { prev: undefined, next: undefined };
   return {
     prev: projects[(index - 1 + projects.length) % projects.length],
@@ -162,8 +163,9 @@ export function adjacentProjects(id: string): {
 export interface Service {
   title: string;
   summary: string;
-  startingAt: string;
-  typicalRange: string;
+  startingUsd: number;
+  typicalMinUsd: number;
+  typicalMaxUsd: number;
   details: string;
   items: string[];
 }
@@ -172,32 +174,36 @@ export const services: Service[] = [
   {
     title: "Professional website",
     summary: "Clean, responsive websites for businesses, products, and personal brands.",
-    startingAt: "€50",
-    typicalRange: "€50–€150",
-    details: "Best for focused brochure, landing, portfolio, or service websites.",
+    startingUsd: 50,
+    typicalMinUsd: 50,
+    typicalMaxUsd: 150,
+    details: "Best for a focused landing page, portfolio, brochure, or service website.",
     items: ["Responsive design", "Contact flow", "SEO metadata", "Deployment"],
   },
   {
     title: "Web application",
     summary: "Interactive applications with authentication, data, dashboards, or APIs.",
-    startingAt: "€100",
-    typicalRange: "€100–€500",
+    startingUsd: 100,
+    typicalMinUsd: 100,
+    typicalMaxUsd: 500,
     details: "Final pricing depends on features, integrations, data model, and complexity.",
     items: ["React", "TypeScript", "APIs", "Databases"],
   },
   {
     title: "Windows .NET tool",
     summary: "Purpose-built desktop utilities that automate or simplify a workflow.",
-    startingAt: "€100",
-    typicalRange: "€100–€800",
+    startingUsd: 100,
+    typicalMinUsd: 100,
+    typicalMaxUsd: 800,
     details: "Final pricing depends on screens, integrations, data processing, and packaging.",
     items: ["C#", ".NET", "WinForms", "Local data & APIs"],
   },
   {
     title: "Roblox system",
     summary: "Modular Luau systems for gameplay, interfaces, persistence, and server logic.",
-    startingAt: "€50",
-    typicalRange: "€50–€150",
+    startingUsd: 50,
+    typicalMinUsd: 50,
+    typicalMaxUsd: 150,
     details: "Best for one clearly scoped system, feature, repair, or integration.",
     items: ["Luau", "Server validation", "Data persistence", "UI logic"],
   },
