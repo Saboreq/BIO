@@ -16,6 +16,7 @@ export const contact = {
 export const nav = [
   { label: "Work", hash: "work" },
   { label: "Services", hash: "services" },
+  { label: "Pricing", hash: "pricing" },
   { label: "About", hash: "about" },
   { label: "Contact", hash: "contact" },
 ];
@@ -156,21 +157,6 @@ export function adjacentProjects(id: string): {
     prev: projects[(index - 1 + projects.length) % projects.length],
     next: projects[(index + 1) % projects.length],
   };
-}
-
-export const pricingContext = {
-  baseCurrency: "USD",
-  usdToEur: 0.876263,
-  rateUpdated: "20 Jul 2026",
-  note: "EUR figures are approximate and may change with the exchange rate.",
-};
-
-export function formatUsd(value: number): string {
-  return `$${value.toLocaleString("en-US")}`;
-}
-
-export function estimateEur(value: number): string {
-  return `≈€${Math.round(value * pricingContext.usdToEur).toLocaleString("en-US")}`;
 }
 
 export interface Service {
