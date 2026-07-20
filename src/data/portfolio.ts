@@ -23,7 +23,7 @@ export const nav = [
 export type ProjectStatus = "OPERATIONAL" | "IN DEVELOPMENT" | "EXPERIMENTAL";
 
 export type ArtworkId =
-  "sabhaven" | "sabcontrol" | "sabteams" | "horror" | "topology";
+  "filehaven" | "sabcontrol" | "sabteams" | "horror" | "topology";
 
 export interface ProjectSection {
   title: string;
@@ -56,7 +56,7 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    id: "sabhaven",
+    id: "filehaven",
     name: "SabHaven",
     category: "File Platform",
     status: "OPERATIONAL",
@@ -90,7 +90,7 @@ export const projects: Project[] = [
       },
     ],
     tech: ["React", "TypeScript", "Supabase", "PostgreSQL", "RLS", "Edge Functions"],
-    artwork: "sabhaven",
+    artwork: "filehaven",
     accent: "#a78bfa",
     accentSoft: "rgba(139, 92, 246, 0.16)",
     year: "2026 — now",
@@ -257,14 +257,9 @@ export function adjacentProjects(id: string): {
 
 export const capabilities = [
   {
-    title: "Windows software",
-    summary: "Focused desktop tools for automation, data processing, and internal workflows.",
-    items: ["C#", ".NET", "WinForms", "C++", "Windows"],
-  },
-  {
-    title: "Web applications",
-    summary: "Responsive interfaces backed by typed APIs, databases, and real access control.",
-    items: ["React", "TypeScript", "Node.js", "PostgreSQL", "Supabase"],
+    title: "Custom software",
+    summary: "Windows tools and web applications built around a clear operational goal.",
+    items: ["C#", ".NET", "WinForms", "C++", "React", "TypeScript"],
   },
   {
     title: "Game systems",
@@ -273,8 +268,8 @@ export const capabilities = [
   },
   {
     title: "Infrastructure & automation",
-    summary: "Deployment, self-hosting, integrations, and repeatable operational workflows.",
-    items: ["Ubuntu", "Docker", "Nginx", "Cloudflare", "AI APIs"],
+    summary: "Databases, deployment, integrations, and repeatable operational workflows.",
+    items: ["PostgreSQL", "Ubuntu", "Docker", "Nginx", "Cloudflare", "AI APIs"],
   },
 ];
 
