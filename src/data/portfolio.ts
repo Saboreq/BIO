@@ -143,7 +143,7 @@ export const projects: Project[] = [
     name: "Saboreq Portfolio",
     category: "Professional Website",
     status: "OPERATIONAL",
-    summary: "Responsive company portfolio built to turn technical work into clear client offers.",
+    summary: "Responsive developer portfolio built to turn technical work into clear client offers.",
     intro:
       "The public website for Saboreq: a fast, accessible portfolio built to present services, estimated pricing, technical case studies, and a straightforward project enquiry path.",
     sections: [
@@ -177,7 +177,7 @@ export const projects: Project[] = [
     accent: "#7dd3fc",
     accentSoft: "rgba(125, 211, 252, 0.12)",
     year: "2026 — now",
-    role: "Company positioning, design, development, deployment",
+    role: "Brand positioning, design, development, deployment",
     github: "https://github.com/Saboreq/BIO",
     live: "https://saboreq.xyz",
     meta: "Live · open source",
