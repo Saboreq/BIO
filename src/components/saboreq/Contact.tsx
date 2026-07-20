@@ -14,47 +14,52 @@ export function ContactSection() {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [status, setStatus] = useState<string>("");
 
-  const set = (k: keyof typeof form, v: string) => {
-    setForm((f) => ({ ...f, [k]: v }));
-    if (errors[k])
-      setErrors((e) => {
-        const n = { ...e };
-        delete n[k];
-        return n;
+  const set = (key: keyof typeof form, value: string) => {
+    setForm((current) => ({ ...current, [key]: value }));
+    if (errors[key]) {
+      setErrors((current) => {
+        const next = { ...current };
+        delete next[key];
+        return next;
       });
+    }
   };
 
   const validate = () => {
-    const e: Record<string, string> = {};
-    if (!form.name.trim()) e.name = "Please share your name.";
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email))
-      e.email = "A valid email helps me reply.";
-    if (form.message.trim().length < 20)
-      e.message = "A bit more context helps (20+ characters).";
-    setErrors(e);
-    return Object.keys(e).length === 0;
+    const nextErrors: Record<string, string> = {};
+    if (!form.name.trim()) nextErrors.name = "Please share your name.";
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
+      nextErrors.email = "Enter a valid email address.";
+    }
+    if (form.message.trim().length < 20) {
+      nextErrors.message = "Add at least 20 characters about the project.";
+    }
+    setErrors(nextErrors);
+    return Object.keys(nextErrors).length === 0;
   };
 
-  const onSubmit = (ev: React.FormEvent) => {
-    ev.preventDefault();
+  const onSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
     if (!validate()) {
       setStatus("Please fix the highlighted fields.");
       return;
     }
+
     const subject = encodeURIComponent(
-      `[${form.type}] Project inquiry from ${form.name}`,
+      `[${form.type}] Quote request from ${form.name}`,
     );
     const body = encodeURIComponent(
       `Name: ${form.name}\nEmail: ${form.email}\nProject type: ${form.type}\n\n${form.message}`,
     );
     const href = `mailto:${contact.email}?subject=${subject}&body=${body}`;
+
     try {
       window.location.href = href;
       setStatus("Your email application should now be open.");
       toast.success("Opening your email application");
     } catch {
       setStatus("Could not open your email app. Use the copy buttons below.");
-      toast.error("Couldn't open your email app.");
+      toast.error("Couldn&apos;t open your email app.");
     }
   };
 
@@ -62,6 +67,7 @@ export function ContactSection() {
     await navigator.clipboard.writeText(contact.email);
     toast.success("Email copied to clipboard");
   };
+
   const copyMessage = async () => {
     const text = `From: ${form.name} <${form.email}>\nType: ${form.type}\n\n${form.message}`;
     await navigator.clipboard.writeText(text);
@@ -74,14 +80,15 @@ export function ContactSection() {
         <div className="absolute inset-0 sab-grid-bg opacity-25" />
       </div>
       <div className="mx-auto max-w-[1240px] px-5 md:px-8">
-        <SectionLabel>04 / CONTACT</SectionLabel>
+        <SectionLabel>05 / CONTACT</SectionLabel>
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-14">
           <div className="lg:col-span-5">
             <h2 className="font-display text-[clamp(1.8rem,3.6vw,3rem)] font-semibold leading-[1.08] tracking-[-0.025em] text-sab-text">
-              Have a system worth building?
+              Request a scoped quote.
             </h2>
-            <p className="mt-5 text-[16px] leading-[1.75] text-sab-text-secondary max-w-[480px]">
-              Tell me the goal, the current state, and what success looks like.
+            <p className="mt-5 max-w-[480px] text-[16px] leading-[1.75] text-sab-text-secondary">
+              Share the goal, required features, current state, deadline, and any
+              examples. I will reply with questions, scope, and an estimated price.
             </p>
             <div className="mt-8 space-y-3">
               <ContactCard
@@ -126,11 +133,12 @@ export function ContactSection() {
                   <input
                     id="c-name"
                     value={form.name}
-                    onChange={(e) => set("name", e.target.value)}
+                    onChange={(event) => set("name", event.target.value)}
                     onBlur={validate}
                     aria-invalid={!!errors.name}
                     aria-describedby={errors.name ? "err-name" : undefined}
                     className="input"
+                    autoComplete="name"
                   />
                 </Field>
                 <Field label="Email" id="c-email" error={errors.email}>
@@ -138,11 +146,12 @@ export function ContactSection() {
                     id="c-email"
                     type="email"
                     value={form.email}
-                    onChange={(e) => set("email", e.target.value)}
+                    onChange={(event) => set("email", event.target.value)}
                     onBlur={validate}
                     aria-invalid={!!errors.email}
                     aria-describedby={errors.email ? "err-email" : undefined}
                     className="input"
+                    autoComplete="email"
                   />
                 </Field>
               </div>
@@ -150,30 +159,30 @@ export function ContactSection() {
                 <select
                   id="c-type"
                   value={form.type}
-                  onChange={(e) => set("type", e.target.value)}
+                  onChange={(event) => set("type", event.target.value)}
                   className="input"
                 >
-                  {projectTypes.map((t) => (
-                    <option key={t}>{t}</option>
+                  {projectTypes.map((type) => (
+                    <option key={type}>{type}</option>
                   ))}
                 </select>
               </Field>
-              <Field label="Message" id="c-msg" error={errors.message}>
+              <Field label="Project details" id="c-msg" error={errors.message}>
                 <textarea
                   id="c-msg"
-                  rows={6}
+                  rows={7}
                   value={form.message}
-                  onChange={(e) => set("message", e.target.value)}
+                  onChange={(event) => set("message", event.target.value)}
                   onBlur={validate}
                   aria-invalid={!!errors.message}
                   aria-describedby={errors.message ? "err-msg" : undefined}
                   className="input resize-none"
-                  placeholder="Goal, current state, constraints, and what success looks like."
+                  placeholder="Goal, required features, current state, deadline, budget range, and useful links."
                 />
               </Field>
               <div className="flex flex-wrap items-center gap-3">
                 <SabButton type="submit" variant="primary">
-                  Send via email
+                  Request a quote
                   <Send className="h-4 w-4" />
                 </SabButton>
                 <SabButton
