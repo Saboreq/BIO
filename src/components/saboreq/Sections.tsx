@@ -343,10 +343,10 @@ export function AboutSection() {
               <span className="text-sab-text-secondary">Reliable delivery.</span>
             </h2>
             <p className="mt-6 max-w-[590px] text-[16px] leading-[1.75] text-sab-text-secondary">
-              I run Saboreq, a software development company serving clients
-              worldwide. I personally handle project scope, development, testing,
-              and delivery for websites, web applications, Windows tools, and
-              Roblox systems.
+              Saboreq is my public development brand. I work independently and
+              personally handle project scope, development, testing, and delivery
+              for websites, web applications, Windows tools, and Roblox systems.
+              Commercial work is invoiced through my registered business.
             </p>
             <p className="mt-6 flex items-center gap-2.5 font-mono text-[11.5px] uppercase tracking-[0.14em] text-sab-text-muted">
               <span className="h-1.5 w-1.5 rounded-full bg-sab-success shadow-[0_0_0_3px_rgba(105,214,163,0.15)]" />
