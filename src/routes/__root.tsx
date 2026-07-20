@@ -26,7 +26,7 @@ function NotFoundComponent() {
           Page not found
         </h1>
         <p className="mt-2 text-sm text-sab-text-secondary">
-          This page doesn't exist or has moved.
+          This page doesn&apos;t exist or has moved.
         </p>
         <div className="mt-6">
           <Link
@@ -49,7 +49,7 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
     <main className="flex min-h-[70vh] items-center justify-center px-4">
       <div className="max-w-md text-center">
         <h1 className="font-display text-xl font-semibold text-sab-text">
-          This page didn't load
+          This page didn&apos;t load
         </h1>
         <p className="mt-2 text-sm text-sab-text-secondary">
           Something went wrong on this end. Try again or head back home.
@@ -82,22 +82,22 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       meta: [
         { charSet: "utf-8" },
         { name: "viewport", content: "width=device-width, initial-scale=1" },
-        { title: "Saboreq — Custom Software, Game Systems & Infrastructure" },
+        { title: "Saboreq — Websites, Web Apps, .NET Tools & Roblox Systems" },
         {
           name: "description",
           content:
-            "Independent software developer building custom Windows tools, web applications, Roblox and Minecraft systems, automation, and self-hosted infrastructure.",
+            "Independent software developer building professional websites, web applications, Windows .NET tools, and Roblox systems for English-speaking clients worldwide.",
         },
         { name: "author", content: "Saboreq" },
         { name: "theme-color", content: "#050507" },
         {
           property: "og:title",
-          content: "Saboreq — Custom Software, Game Systems & Infrastructure",
+          content: "Saboreq — Focused Software for Real Problems",
         },
         {
           property: "og:description",
           content:
-            "Custom Windows tools, web applications, game systems, automation, and production infrastructure.",
+            "Professional websites, web applications, Windows .NET tools, and Roblox systems with clear scope and estimated pricing.",
         },
         { property: "og:type", content: "website" },
         { property: "og:site_name", content: "Saboreq" },
@@ -138,14 +138,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
                 url: "https://saboreq.xyz",
                 jobTitle: "Independent Software Developer",
                 knowsAbout: [
+                  "Professional websites",
+                  "Web applications",
                   "C#",
                   ".NET",
+                  "WinForms",
                   "C++",
                   "React",
                   "TypeScript",
                   "Roblox Luau",
-                  "PaperMC",
-                  "Linux infrastructure",
                 ],
                 sameAs: ["https://github.com/Saboreq"],
               },
