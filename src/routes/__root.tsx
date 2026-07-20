@@ -82,11 +82,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       meta: [
         { charSet: "utf-8" },
         { name: "viewport", content: "width=device-width, initial-scale=1" },
-        { title: "Saboreq — Custom Software, Websites & Digital Products" },
+        { title: "Saboreq — Websites, Web Apps, .NET Tools & Roblox Systems" },
         {
           name: "description",
           content:
-            "Saboreq is a software development company building professional websites, web applications, Windows .NET tools, and Roblox systems for clients worldwide.",
+            "Independent software developer behind Saboreq, building professional websites, web applications, Windows .NET tools, and Roblox systems for clients worldwide.",
         },
         { name: "author", content: "Saboreq" },
         { name: "theme-color", content: "#050507" },
@@ -133,17 +133,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
             "@context": "https://schema.org",
             "@graph": [
               {
-                "@type": "Organization",
+                "@type": "Person",
                 name: "Saboreq",
+                alternateName: "Saboreq developer brand",
                 url: "https://saboreq.xyz",
                 email: "contact@saboreq.xyz",
+                jobTitle: "Independent Software Developer",
                 description:
-                  "Software development company building websites, web applications, Windows tools, and Roblox systems.",
-                founder: {
-                  "@type": "Person",
-                  name: "Saboreq",
-                  jobTitle: "Software Developer",
-                },
+                  "Independent software developer building websites, web applications, Windows tools, and Roblox systems.",
                 knowsAbout: [
                   "Professional websites",
                   "Web applications",
@@ -162,7 +159,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
                 name: "Saboreq",
                 url: "https://saboreq.xyz",
                 publisher: {
-                  "@type": "Organization",
+                  "@type": "Person",
                   name: "Saboreq",
                 },
               },
