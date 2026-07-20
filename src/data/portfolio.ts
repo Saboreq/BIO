@@ -3,7 +3,7 @@ export const brand = {
   wordmark: "saboreq",
   symbol: "S/",
   domain: "saboreq.xyz",
-  tagline: "Software, game systems, automation, and infrastructure.",
+  tagline: "Custom websites, web applications, Windows tools, and Roblox systems.",
 };
 
 export const contact = {
@@ -15,14 +15,14 @@ export const contact = {
 
 export const nav = [
   { label: "Work", hash: "work" },
+  { label: "Services", hash: "services" },
+  { label: "Pricing", hash: "pricing" },
   { label: "About", hash: "about" },
   { label: "Contact", hash: "contact" },
 ];
 
 export type ProjectStatus = "OPERATIONAL" | "IN DEVELOPMENT" | "EXPERIMENTAL";
-
-export type ArtworkId =
-  "filehaven" | "sabcontrol" | "sabteams" | "horror" | "topology";
+export type ArtworkId = "sabhaven" | "sabtrace" | "portfolio";
 
 export interface ProjectSection {
   title: string;
@@ -34,15 +34,11 @@ export interface Project {
   name: string;
   category: string;
   status: ProjectStatus;
-  /** One line for the home index. Keep under ~80 chars. */
   summary: string;
-  /** One or two sentences opening the detail page. */
   intro: string;
-  /** Short titled bullet groups for the detail page. */
   sections: ProjectSection[];
   tech: string[];
   artwork: ArtworkId;
-  /** Per-project accent, stays inside the site palette. */
   accent: string;
   accentSoft: string;
   year: string;
@@ -55,235 +51,216 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    id: "filehaven",
-    name: "Filehaven",
-    category: "Web Platform",
+    id: "sabhaven",
+    name: "SabHaven",
+    category: "Web Application",
     status: "OPERATIONAL",
-    summary: "Invite-only file sharing with row-level-secured private storage.",
+    summary: "Controlled public downloads with owner-only private storage.",
     intro:
-      "An invite-only file platform that keeps public downloads and owner-only private storage strictly apart — enforced in the database, not the UI.",
+      "An invite-only file portal built for controlled file delivery. Visitors can access public content, while signed-in members manage private files and folders that remain isolated from every other account.",
     sections: [
       {
-        title: "What it does",
+        title: "Product",
         bullets: [
-          "Public download area for released files",
-          "Owner-only private storage next to it",
-          "Invite-gated membership, no open signups",
+          "Public browsing with short-lived download links",
+          "Invite-only accounts, member uploads, and virtual folders",
+          "Role-based dashboard for members and invitation management",
         ],
       },
       {
-        title: "How privacy is enforced",
+        title: "Privacy and access",
         bullets: [
-          "Postgres row-level security on every table",
-          "Short-lived signed URLs for downloads",
-          "No client-side-only access checks",
+          "Private content remains owner-only across complete folder trees",
+          "Invitations, roles, and destructive actions are validated server-side",
+          "Private object storage with documented security boundaries",
         ],
       },
       {
-        title: "Build notes",
+        title: "Delivery",
         bullets: [
-          "React + TypeScript front end",
-          "Supabase auth, storage, and database",
-          "Deployed and in daily use",
+          "Responsive production application deployed for real use",
+          "Automated checks for important authorization boundaries",
+          "Documented setup, deployment, threat model, and limitations",
         ],
       },
     ],
     tech: ["React", "TypeScript", "Supabase", "PostgreSQL"],
-    artwork: "filehaven",
+    artwork: "sabhaven",
     accent: "#a78bfa",
     accentSoft: "rgba(139, 92, 246, 0.16)",
-    year: "2025 — now",
-    role: "Design, build, operations",
-    github: "https://github.com/Saboreq/Website",
-    live: "https://app.saboreq.xyz",
+    year: "2026 — now",
+    role: "Product design, development, security model, deployment",
+    github: "https://github.com/Saboreq/SabHaven",
+    live: "https://files.saboreq.xyz",
     meta: "Live · invite-only",
     featured: true,
   },
   {
-    id: "sabcontrol",
-    name: "SabControl",
-    category: "Minecraft · Infrastructure",
-    status: "IN DEVELOPMENT",
-    summary: "Modular server management: Paper plugin, Discord bridge, panel.",
+    id: "sabtrace",
+    name: "SabTrace",
+    category: "Developer Tool",
+    status: "OPERATIONAL",
+    summary: "Fast log analysis for files, pipelines, and automated workflows.",
     intro:
-      "A modular Minecraft management system that connects a Paper plugin, Discord automation, and a focused control interface for safe server operations.",
+      "A lightweight command-line tool that helps developers and system operators search logs, isolate important events, review severity statistics, and export structured reports without opening a full monitoring platform.",
     sections: [
       {
-        title: "Components",
+        title: "Log analysis",
         bullets: [
-          "Paper plugin exposing server operations",
-          "Discord automation for routine actions",
-          "Control interface for day-to-day admin",
+          "Search one or more files or read directly from a command pipeline",
+          "Filter by severity, phrase, regular expression, or result limit",
+          "Review readable terminal summaries or export structured JSON",
         ],
       },
       {
-        title: "Design goals",
+        title: "Reliable automation",
         bullets: [
-          "Safe operations over raw console access",
-          "Modules stay independent and replaceable",
-          "One clear path for every action",
+          "Clear exit codes for scripts and automated workflows",
+          "Tested parsing, filtering, result limits, and report generation",
+          "Verified release archive with published checksum",
+        ],
+      },
+      {
+        title: "Availability",
+        bullets: [
+          "Versioned downloads for Windows, Linux, and macOS",
+          "Lightweight executable with no third-party runtime dependencies",
+          "Open-source codebase with documented usage and build instructions",
         ],
       },
     ],
-    tech: ["Java", "PaperMC", "Node.js", "Discord API"],
-    artwork: "sabcontrol",
+    tech: ["C++20", "Command-line tools", "Log analysis", "JSON"],
+    artwork: "sabtrace",
+    accent: "#69d6a3",
+    accentSoft: "rgba(105, 214, 163, 0.14)",
+    year: "2026",
+    role: "Product design, C++ development, testing, release delivery",
+    github: "https://github.com/Saboreq/SabTrace",
+    meta: "v0.1.0 · open source",
+  },
+  {
+    id: "portfolio",
+    name: "Saboreq Portfolio",
+    category: "Professional Website",
+    status: "OPERATIONAL",
+    summary: "Responsive developer portfolio built to turn technical work into clear client offers.",
+    intro:
+      "The public website for Saboreq: a fast, accessible portfolio built to present services, estimated pricing, technical case studies, and a straightforward project enquiry path.",
+    sections: [
+      {
+        title: "Business-focused structure",
+        bullets: [
+          "Clear services and estimated starting prices",
+          "Project case studies with live and source links",
+          "Focused enquiry flow for four supported project types",
+        ],
+      },
+      {
+        title: "Frontend",
+        bullets: [
+          "Responsive React and TypeScript interface",
+          "Fast navigation, page metadata, and accessible interactions",
+          "Consistent visual system across desktop and mobile layouts",
+        ],
+      },
+      {
+        title: "Delivery",
+        bullets: [
+          "Search and social-sharing metadata",
+          "Preview and production deployments",
+          "Public source repository with documented setup",
+        ],
+      },
+    ],
+    tech: ["React", "TypeScript", "Responsive design", "Vercel"],
+    artwork: "portfolio",
     accent: "#7dd3fc",
     accentSoft: "rgba(125, 211, 252, 0.12)",
-    year: "2026",
-    role: "Architecture, plugin, tooling",
-    meta: "Private project",
-  },
-  {
-    id: "sabteams",
-    name: "SabTeams",
-    category: "Minecraft Plugin",
-    status: "IN DEVELOPMENT",
-    summary:
-      "PaperMC team system with invites, costs, and persistent identity.",
-    intro:
-      "A custom PaperMC team plugin: creation, invitations, configurable costs, persistent data, and team tags carried in player identity.",
-    sections: [
-      {
-        title: "Features",
-        bullets: [
-          "Team creation and invitation flow",
-          "Configurable creation and upkeep costs",
-          "Team tags shown in player identity",
-        ],
-      },
-      {
-        title: "Under the hood",
-        bullets: [
-          "SQL-backed persistent team data",
-          "Gradle build, PaperMC API",
-          "Survives restarts and player churn",
-        ],
-      },
-    ],
-    tech: ["Java", "PaperMC", "Gradle", "SQL"],
-    artwork: "sabteams",
-    accent: "#f0abfc",
-    accentSoft: "rgba(240, 171, 252, 0.12)",
-    year: "2026",
-    role: "Plugin development",
-    meta: "Private project",
-  },
-  {
-    id: "horror",
-    name: "Roblox Horror Survival",
-    category: "Game Systems",
-    status: "IN DEVELOPMENT",
-    summary: "Multiplayer horror with procedural rooms and a pursuing entity.",
-    intro:
-      "A multiplayer horror experience built on procedurally assembled rooms, a pursuing entity, and survival systems the server — not the client — decides.",
-    sections: [
-      {
-        title: "Systems",
-        bullets: [
-          "Procedural room assembly per run",
-          "Entity that hunts across the layout",
-          "Survival loop with shared objectives",
-        ],
-      },
-      {
-        title: "Architecture",
-        bullets: [
-          "Server-authoritative state and validation",
-          "Luau, structured around clear modules",
-          "Multiplayer-first from the start",
-        ],
-      },
-    ],
-    tech: ["Roblox Studio", "Luau", "Procedural", "Multiplayer"],
-    artwork: "horror",
-    accent: "#fb7185",
-    accentSoft: "rgba(251, 113, 133, 0.1)",
-    year: "2026",
-    role: "Game systems, scripting",
-    meta: "In development",
-  },
-  {
-    id: "infra",
-    name: "Self-Hosted Infrastructure",
-    category: "Infrastructure",
-    status: "OPERATIONAL",
-    summary: "Linux hosting for game servers and web services, self-operated.",
-    intro:
-      "The Linux environment behind my projects: containers, reverse proxies, DNS routing, and monitoring for game servers and web services.",
-    sections: [
-      {
-        title: "Topology",
-        bullets: [
-          "Cloudflare DNS in front of everything",
-          "Nginx reverse proxy per service",
-          "Pterodactyl panel driving game nodes",
-        ],
-      },
-      {
-        title: "Operations",
-        bullets: [
-          "Containerised services on Ubuntu",
-          "Monitoring and secure remote access",
-          "Hosts the projects on this site",
-        ],
-      },
-    ],
-    tech: ["Ubuntu", "Docker", "Nginx", "Pterodactyl"],
-    artwork: "topology",
-    accent: "#69d6a3",
-    accentSoft: "rgba(105, 214, 163, 0.1)",
-    year: "Ongoing",
-    role: "Setup, operations",
-    meta: "Internal tooling",
+    year: "2026 — now",
+    role: "Brand positioning, design, development, deployment",
+    github: "https://github.com/Saboreq/BIO",
+    live: "https://saboreq.xyz",
+    meta: "Live · open source",
   },
 ];
 
 export function getProject(id: string): Project | undefined {
-  return projects.find((p) => p.id === id);
+  const normalizedId = id === "filehaven" ? "sabhaven" : id;
+  return projects.find((project) => project.id === normalizedId);
 }
 
 export function adjacentProjects(id: string): {
   prev: Project | undefined;
   next: Project | undefined;
 } {
-  const i = projects.findIndex((p) => p.id === id);
-  if (i === -1) return { prev: undefined, next: undefined };
+  const normalizedId = id === "filehaven" ? "sabhaven" : id;
+  const index = projects.findIndex((project) => project.id === normalizedId);
+  if (index === -1) return { prev: undefined, next: undefined };
   return {
-    prev: projects[(i - 1 + projects.length) % projects.length],
-    next: projects[(i + 1) % projects.length],
+    prev: projects[(index - 1 + projects.length) % projects.length],
+    next: projects[(index + 1) % projects.length],
   };
 }
 
-export const capabilities = [
+export interface Service {
+  title: string;
+  summary: string;
+  startingUsd: number;
+  typicalMinUsd: number;
+  typicalMaxUsd: number;
+  details: string;
+  items: string[];
+}
+
+export const services: Service[] = [
   {
-    title: "Software",
-    summary: "Web interfaces backed by real APIs and typed data.",
-    items: ["React", "TypeScript", "Node.js", "Python", "PostgreSQL"],
+    title: "Professional website",
+    summary: "Clean, responsive websites for businesses, products, and personal brands.",
+    startingUsd: 50,
+    typicalMinUsd: 50,
+    typicalMaxUsd: 150,
+    details: "Best for a focused landing page, portfolio, brochure, or service website.",
+    items: ["Responsive design", "Contact flow", "SEO metadata", "Deployment"],
   },
   {
-    title: "Game systems",
-    summary: "Server-authoritative gameplay on Roblox and PaperMC.",
-    items: ["Luau", "Java", "PaperMC", "Multiplayer", "Procedural"],
+    title: "Web application",
+    summary: "Interactive applications with authentication, data, dashboards, or APIs.",
+    startingUsd: 100,
+    typicalMinUsd: 100,
+    typicalMaxUsd: 500,
+    details: "Final pricing depends on features, integrations, data model, and complexity.",
+    items: ["React", "TypeScript", "APIs", "Databases"],
   },
   {
-    title: "Infrastructure",
-    summary: "Self-hosted Linux, containers, and automation with AI APIs.",
-    items: ["Ubuntu", "Docker", "Nginx", "Cloudflare", "AI APIs"],
+    title: "Windows .NET tool",
+    summary: "Purpose-built desktop utilities that automate or simplify a workflow.",
+    startingUsd: 100,
+    typicalMinUsd: 100,
+    typicalMaxUsd: 800,
+    details: "Final pricing depends on screens, integrations, data processing, and packaging.",
+    items: ["C#", ".NET", "WinForms", "Local data & APIs"],
+  },
+  {
+    title: "Roblox system",
+    summary: "Modular Luau systems for gameplay, interfaces, persistence, and server logic.",
+    startingUsd: 50,
+    typicalMinUsd: 50,
+    typicalMaxUsd: 150,
+    details: "Best for one clearly scoped system, feature, repair, or integration.",
+    items: ["Luau", "Server validation", "Data persistence", "UI logic"],
   },
 ];
 
 export const currentFocus = [
-  { label: "Filehaven file sharing platform", state: "LIVE" as const },
-  { label: "Roblox multiplayer horror experience", state: "BUILDING" as const },
-  { label: "Minecraft plugins and server tooling", state: "BUILDING" as const },
-  { label: "Self-hosted game infrastructure", state: "ACTIVE" as const },
+  { label: "Professional websites", state: "AVAILABLE" as const },
+  { label: "Web applications", state: "AVAILABLE" as const },
+  { label: "Windows and .NET tools", state: "AVAILABLE" as const },
+  { label: "Roblox systems", state: "AVAILABLE" as const },
 ];
 
 export const projectTypes = [
-  "Software",
-  "Minecraft",
-  "Roblox",
-  "Infrastructure",
-  "Automation",
-  "Other",
+  "Professional website",
+  "Web application",
+  "Windows .NET tool",
+  "Roblox system",
 ];

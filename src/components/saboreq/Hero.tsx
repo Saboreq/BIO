@@ -42,13 +42,13 @@ export function Hero() {
           className="flex items-center gap-2.5 font-mono text-[11.5px] uppercase tracking-[0.14em] text-sab-text-muted"
         >
           <span className="h-1.5 w-1.5 rounded-full bg-sab-success shadow-[0_0_0_3px_rgba(105,214,163,0.15)]" />
-          Independent developer · available for selected projects
+          Independent software developer · accepting scoped projects
         </p>
         <h1
           data-reveal="2"
-          className="mt-6 max-w-[880px] font-display text-[clamp(2.6rem,6.5vw,5.6rem)] font-semibold leading-[1.03] tracking-[-0.03em] text-sab-text"
+          className="mt-6 max-w-[940px] font-display text-[clamp(2.6rem,6.5vw,5.6rem)] font-semibold leading-[1.03] tracking-[-0.03em] text-sab-text"
         >
-          I build systems that{" "}
+          Focused software built to{" "}
           <span
             className="bg-clip-text text-transparent"
             style={{
@@ -56,23 +56,26 @@ export function Hero() {
                 "linear-gradient(120deg, #f7f7f8 30%, #a78bfa 100%)",
             }}
           >
-            work beyond the demo.
+            solve a real problem.
           </span>
         </h1>
         <p
           data-reveal="3"
-          className="mt-7 max-w-[560px] text-[17px] leading-[1.7] text-sab-text-secondary"
+          className="mt-7 max-w-[720px] text-[17px] leading-[1.7] text-sab-text-secondary"
         >
-          Web platforms, game systems, Minecraft tooling, and the self-hosted
-          infrastructure they run on.
+          Through the Saboreq brand, I deliver professional websites, web
+          applications, Windows .NET tools, and Roblox systems for clients worldwide.
         </p>
         <div data-reveal="4" className="mt-9 flex flex-wrap items-center gap-3">
           <SabLinkButton href="#work" variant="primary">
-            See the work
+            View projects
             <ArrowRight className="h-4 w-4" />
           </SabLinkButton>
+          <SabLinkButton href="#pricing" variant="secondary">
+            View estimates
+          </SabLinkButton>
           <SabLinkButton href="#contact" variant="secondary">
-            Get in touch
+            Request a quote
           </SabLinkButton>
           <div className="ml-1 flex items-center gap-2">
             {contact.github && (

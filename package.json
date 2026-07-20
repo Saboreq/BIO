@@ -43,8 +43,8 @@
     "typescript-eslint": "^8.56.1",
     "vite": "^8.0.16"
   },
-  "version": "1.0.0",
-  "description": "The official Saboreq portfolio for software, game systems, automation, and infrastructure.",
+  "version": "1.1.0",
+  "description": "Portfolio for custom Windows software, web applications, game systems, automation, and infrastructure.",
   "homepage": "https://saboreq.xyz",
   "packageManager": "npm@10.9.2",
   "engines": {

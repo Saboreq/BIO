@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
 import { ArrowRight, ArrowUpRight, Github } from "lucide-react";
 import {
   SabButton,
@@ -9,9 +10,9 @@ import {
 } from "./primitives";
 import { Artwork } from "./artwork";
 import {
-  capabilities,
   currentFocus,
   projects,
+  services,
   type Project,
   type ProjectStatus,
 } from "@/data/portfolio";
@@ -23,9 +24,21 @@ const statusDot: Record<ProjectStatus, string> = {
   EXPERIMENTAL: "bg-sab-warning",
 };
 
+const usd = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "USD",
+  maximumFractionDigits: 0,
+});
+
+const eur = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "EUR",
+  maximumFractionDigits: 0,
+});
+
 export function WorkSection() {
-  const featured = projects.find((p) => p.featured) ?? projects[0];
-  const rest = projects.filter((p) => p.id !== featured.id);
+  const featured = projects.find((project) => project.featured) ?? projects[0];
+  const rest = projects.filter((project) => project.id !== featured.id);
 
   return (
     <section id="work" className="relative py-20 md:py-28">
@@ -35,11 +48,11 @@ export function WorkSection() {
           data-reveal="5"
           className="flex flex-wrap items-end justify-between gap-4"
         >
-          <h2 className="max-w-[560px] font-display text-[clamp(1.8rem,3.6vw,3rem)] font-semibold leading-[1.1] tracking-[-0.025em] text-sab-text">
-            Selected work.
+          <h2 className="max-w-[640px] font-display text-[clamp(1.8rem,3.6vw,3rem)] font-semibold leading-[1.1] tracking-[-0.025em] text-sab-text">
+            Production work, explained clearly.
           </h2>
           <p className="text-[14px] text-sab-text-muted">
-            Real projects — each one has its own page.
+            Selected products with clear outcomes and implementation details.
           </p>
         </div>
 
@@ -47,11 +60,13 @@ export function WorkSection() {
           <FeaturedProject project={featured} />
         </div>
 
-        <div className="mt-6 overflow-hidden rounded-2xl border border-sab-border bg-[rgba(11,11,16,0.8)]">
-          {rest.map((p, i) => (
-            <ProjectRow key={p.id} project={p} index={i + 2} />
-          ))}
-        </div>
+        {rest.length > 0 && (
+          <div className="mt-6 overflow-hidden rounded-2xl border border-sab-border bg-[rgba(11,11,16,0.8)]">
+            {rest.map((project, index) => (
+              <ProjectRow key={project.id} project={project} index={index + 2} />
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );
@@ -97,8 +112,8 @@ function FeaturedProject({ project }: { project: Project }) {
             {project.summary}
           </p>
           <div className="flex flex-wrap gap-1.5">
-            {project.tech.slice(0, 4).map((t) => (
-              <TechnicalTag key={t}>{t}</TechnicalTag>
+            {project.tech.slice(0, 4).map((technology) => (
+              <TechnicalTag key={technology}>{technology}</TechnicalTag>
             ))}
           </div>
           <div className="mt-auto flex items-center justify-between pt-3">
@@ -145,9 +160,7 @@ function ProjectRow({ project, index }: { project: Project; index: number }) {
         {project.summary}
       </span>
       <span className="hidden items-center gap-2 font-mono text-[10.5px] uppercase tracking-[0.12em] text-sab-text-muted md:flex">
-        <span
-          className={cn("h-1.5 w-1.5 rounded-full", statusDot[project.status])}
-        />
+        <span className={cn("h-1.5 w-1.5 rounded-full", statusDot[project.status])} />
         {project.status}
       </span>
       <ArrowUpRight className="h-4 w-4 text-sab-text-faint transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-sab-purple-light" />
@@ -155,28 +168,163 @@ function ProjectRow({ project, index }: { project: Project; index: number }) {
   );
 }
 
-export function CapabilitiesSection() {
+export function ServicesSection() {
   return (
-    <section id="capabilities" className="relative py-16 md:py-20">
+    <section id="services" className="relative py-16 md:py-20">
       <div className="mx-auto max-w-[1240px] px-5 md:px-8">
-        <SectionLabel>02 / CAPABILITIES</SectionLabel>
-        <div className="grid gap-x-10 gap-y-8 border-t border-sab-border pt-8 md:grid-cols-3">
-          {capabilities.map((c) => (
-            <div key={c.title}>
+        <SectionLabel>02 / SERVICES</SectionLabel>
+        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+          {services.map((service) => (
+            <SabCard
+              key={service.title}
+              hover={false}
+              className="p-5 bg-[rgba(11,11,16,0.82)]"
+            >
               <h3 className="font-display text-lg font-semibold text-sab-text">
-                {c.title}
+                {service.title}
               </h3>
-              <p className="mt-1.5 text-[14px] leading-[1.6] text-sab-text-secondary">
-                {c.summary}
+              <p className="mt-2 text-[14px] leading-[1.65] text-sab-text-secondary">
+                {service.summary}
               </p>
-              <div className="mt-3.5 flex flex-wrap gap-1.5">
-                {c.items.map((i) => (
-                  <TechnicalTag key={i}>{i}</TechnicalTag>
+              <div className="mt-4 flex flex-wrap gap-1.5">
+                {service.items.map((item) => (
+                  <TechnicalTag key={item}>{item}</TechnicalTag>
                 ))}
               </div>
-            </div>
+            </SabCard>
           ))}
         </div>
+      </div>
+    </section>
+  );
+}
+
+type ExchangeRate = {
+  rate: number;
+  date: string;
+};
+
+function useUsdToEurRate() {
+  const [exchangeRate, setExchangeRate] = useState<ExchangeRate>({
+    rate: 0.876263,
+    date: "2026-07-20",
+  });
+
+  useEffect(() => {
+    const controller = new AbortController();
+
+    void fetch("https://api.frankfurter.app/latest?from=USD&to=EUR", {
+      signal: controller.signal,
+    })
+      .then((response) => {
+        if (!response.ok) throw new Error("Exchange-rate request failed.");
+        return response.json() as Promise<{
+          date?: string;
+          rates?: { EUR?: number };
+        }>;
+      })
+      .then((result) => {
+        const rate = result.rates?.EUR;
+        if (
+          typeof rate === "number" &&
+          rate > 0 &&
+          typeof result.date === "string"
+        ) {
+          setExchangeRate({ rate, date: result.date });
+        }
+      })
+      .catch((error: unknown) => {
+        if (error instanceof DOMException && error.name === "AbortError") return;
+        console.warn("Could not refresh the USD/EUR estimate.", error);
+      });
+
+    return () => controller.abort();
+  }, []);
+
+  return exchangeRate;
+}
+
+function formatRateDate(date: string) {
+  return new Intl.DateTimeFormat("en-US", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+    timeZone: "UTC",
+  }).format(new Date(`${date}T00:00:00Z`));
+}
+
+export function PricingSection() {
+  const exchangeRate = useUsdToEurRate();
+
+  return (
+    <section id="pricing" className="relative py-20 md:py-28">
+      <div className="mx-auto max-w-[1240px] px-5 md:px-8">
+        <SectionLabel>03 / ESTIMATED PRICING</SectionLabel>
+        <div className="flex flex-col justify-between gap-5 md:flex-row md:items-end">
+          <div>
+            <h2 className="max-w-[700px] font-display text-[clamp(1.8rem,3.6vw,3rem)] font-semibold leading-[1.1] tracking-[-0.025em] text-sab-text">
+              Clear starting points. A scoped quote before work begins.
+            </h2>
+            <p className="mt-4 max-w-[700px] text-[15px] leading-[1.7] text-sab-text-secondary">
+              USD is the base currency. EUR values are approximate and use the latest
+              available daily exchange rate. Final pricing depends on scope,
+              complexity, integrations, supplied assets, and deadline.
+            </p>
+          </div>
+          <p className="font-mono text-[10.5px] uppercase tracking-[0.12em] text-sab-text-muted">
+            1 USD ≈ {exchangeRate.rate.toFixed(4)} EUR · {formatRateDate(exchangeRate.date)}
+          </p>
+        </div>
+
+        <div className="mt-10 grid gap-5 md:grid-cols-2">
+          {services.map((service) => (
+            <SabCard
+              key={service.title}
+              hover={false}
+              className="flex flex-col p-6 bg-[rgba(11,11,16,0.96)]"
+            >
+              <div className="flex flex-wrap items-start justify-between gap-4">
+                <div>
+                  <p className="font-mono text-[10.5px] uppercase tracking-[0.14em] text-sab-text-muted">
+                    {service.title}
+                  </p>
+                  <p className="mt-3 font-display text-3xl font-semibold tracking-[-0.025em] text-sab-text">
+                    <span className="mr-2 text-sm font-medium text-sab-text-muted">
+                      From
+                    </span>
+                    {usd.format(service.startingUsd)}
+                  </p>
+                  <p className="mt-1 text-[13px] text-sab-text-muted">
+                    ≈ {eur.format(service.startingUsd * exchangeRate.rate)}
+                  </p>
+                </div>
+                <div className="text-right">
+                  <span className="block rounded-full border border-sab-border-purple bg-[rgba(139,92,246,0.08)] px-3 py-1.5 font-mono text-[10.5px] uppercase tracking-[0.11em] text-sab-purple-light">
+                    Typical {usd.format(service.typicalMinUsd)}–{usd.format(service.typicalMaxUsd)}
+                  </span>
+                  <span className="mt-2 block text-[12px] text-sab-text-muted">
+                    ≈ {eur.format(service.typicalMinUsd * exchangeRate.rate)}–{eur.format(service.typicalMaxUsd * exchangeRate.rate)}
+                  </span>
+                </div>
+              </div>
+              <p className="mt-5 text-[14px] leading-[1.65] text-sab-text-secondary">
+                {service.details}
+              </p>
+              <a
+                href="#contact"
+                className="mt-6 inline-flex items-center gap-2 self-start font-mono text-[12px] uppercase tracking-[0.1em] text-sab-purple-light transition-colors hover:text-sab-purple-bright"
+              >
+                Request a quote
+                <ArrowRight className="h-3.5 w-3.5" />
+              </a>
+            </SabCard>
+          ))}
+        </div>
+
+        <p className="mt-5 text-[12px] leading-[1.65] text-sab-text-muted">
+          Estimates exclude third-party hosting, paid services, marketplace fees,
+          licences, and ongoing maintenance unless included in the written quote.
+        </p>
       </div>
     </section>
   );
@@ -186,40 +334,39 @@ export function AboutSection() {
   return (
     <section id="about" className="relative py-20 md:py-28">
       <div className="mx-auto max-w-[1240px] px-5 md:px-8">
-        <SectionLabel>03 / ABOUT</SectionLabel>
+        <SectionLabel>04 / ABOUT</SectionLabel>
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-14">
           <div className="lg:col-span-7">
             <h2 className="font-display text-[clamp(1.8rem,3.6vw,3rem)] font-semibold leading-[1.08] tracking-[-0.025em] text-sab-text">
-              Curious enough to explore.
+              Practical scope.
               <br />
-              <span className="text-sab-text-secondary">
-                Disciplined enough to finish.
-              </span>
+              <span className="text-sab-text-secondary">Reliable delivery.</span>
             </h2>
-            <p className="mt-6 max-w-[560px] text-[16px] leading-[1.75] text-sab-text-secondary">
-              Independent developer focused on practical systems: focused
-              interfaces, maintainable architecture, and infrastructure I run
-              myself.
+            <p className="mt-6 max-w-[590px] text-[16px] leading-[1.75] text-sab-text-secondary">
+              Saboreq is my public development brand. I work independently and
+              personally handle project scope, development, testing, and delivery
+              for websites, web applications, Windows tools, and Roblox systems.
+              Commercial work is invoiced through my registered business.
             </p>
             <p className="mt-6 flex items-center gap-2.5 font-mono text-[11.5px] uppercase tracking-[0.14em] text-sab-text-muted">
               <span className="h-1.5 w-1.5 rounded-full bg-sab-success shadow-[0_0_0_3px_rgba(105,214,163,0.15)]" />
-              Available for selected collaborations
+              Available for clearly scoped projects
             </p>
           </div>
           <div className="lg:col-span-5">
             <SabCard className="p-5 bg-[rgba(11,11,16,0.96)]">
-              <div className="sab-label">CURRENT FOCUS</div>
+              <div className="sab-label">CURRENT AVAILABILITY</div>
               <ul className="mt-4 space-y-2">
-                {currentFocus.map((f) => (
+                {currentFocus.map((focus) => (
                   <li
-                    key={f.label}
+                    key={focus.label}
                     className="flex items-center justify-between rounded-md border border-sab-border bg-sab-bg-soft px-3 py-2.5"
                   >
                     <span className="text-[14px] text-sab-text-secondary">
-                      {f.label}
+                      {focus.label}
                     </span>
                     <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-sab-purple-light">
-                      {f.state}
+                      {focus.state}
                     </span>
                   </li>
                 ))}
@@ -241,7 +388,7 @@ export function Footer() {
             S<span className="text-sab-purple">/</span>
           </span>
           <span className="text-[13px] text-sab-text-secondary">
-            © {new Date().getFullYear()} saboreq.xyz
+            © {new Date().getFullYear()} Saboreq
           </span>
         </div>
         <nav
@@ -258,6 +405,14 @@ export function Footer() {
           </Link>
           <Link
             to="/"
+            hash="pricing"
+            hashScrollIntoView={{ behavior: "instant", block: "start" }}
+            className="hover:text-sab-text"
+          >
+            Pricing
+          </Link>
+          <Link
+            to="/"
             hash="contact"
             hashScrollIntoView={{ behavior: "instant", block: "start" }}
             className="hover:text-sab-text"
@@ -265,7 +420,7 @@ export function Footer() {
             Contact
           </Link>
           <a
-            href="https://github.com/saboreq"
+            href="https://github.com/Saboreq"
             target="_blank"
             rel="noreferrer noopener"
             className="hover:text-sab-text"

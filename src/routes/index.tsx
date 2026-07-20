@@ -2,7 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Hero } from "@/components/saboreq/Hero";
 import {
   WorkSection,
-  CapabilitiesSection,
+  ServicesSection,
+  PricingSection,
   AboutSection,
 } from "@/components/saboreq/Sections";
 import { ContactSection } from "@/components/saboreq/Contact";
@@ -16,7 +17,8 @@ function Index() {
     <main id="main">
       <Hero />
       <WorkSection />
-      <CapabilitiesSection />
+      <ServicesSection />
+      <PricingSection />
       <AboutSection />
       <ContactSection />
     </main>
