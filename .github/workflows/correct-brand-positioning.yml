@@ -1,0 +1,62 @@
+name: Correct brand positioning
+
+on:
+  push:
+    branches:
+      - agent/correct-brand-positioning
+
+permissions:
+  contents: write
+
+jobs:
+  correct-copy:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/correct-brand-positioning
+          fetch-depth: 0
+
+      - name: Correct public wording
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          replacements = {
+              Path("src/components/saboreq/Sections.tsx"): [
+                  (
+                      "I run Saboreq, a software development company serving clients\n               worldwide. I personally handle project scope, development, testing,\n               and delivery for websites, web applications, Windows tools, and\n               Roblox systems.",
+                      "Saboreq is my public development brand. I work independently and\n               personally handle project scope, development, testing, and delivery\n               for websites, web applications, Windows tools, and Roblox systems.\n               Commercial work is invoiced through my registered business.",
+                  ),
+              ],
+              Path("src/data/portfolio.ts"): [
+                  (
+                      "Responsive company portfolio built to turn technical work into clear client offers.",
+                      "Responsive developer portfolio built to turn technical work into clear client offers.",
+                  ),
+                  (
+                      'role: "Company positioning, design, development, deployment",',
+                      'role: "Brand positioning, design, development, deployment",',
+                  ),
+              ],
+          }
+
+          for path, pairs in replacements.items():
+              text = path.read_text(encoding="utf-8")
+              for old, new in pairs:
+                  if old not in text:
+                      raise SystemExit(f"Expected text not found in {path}: {old}")
+                  text = text.replace(old, new)
+              path.write_text(text, encoding="utf-8")
+
+          Path(".github/workflows/correct-brand-positioning.yml").unlink()
+          PY
+
+      - name: Commit corrections
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Correct Saboreq brand positioning"
+          git push origin HEAD:agent/correct-brand-positioning
