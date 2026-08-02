@@ -51,6 +51,50 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    id: "cloudflare-r2-uploader",
+    name: "Cloudflare R2 Uploader",
+    category: "Windows Application",
+    status: "OPERATIONAL",
+    summary: "Windows desktop client for Cloudflare R2 with resumable uploads and protected credentials.",
+    intro:
+      "A native Windows application for managing files in Cloudflare R2 object storage without a mounted drive, Worker, or background service. It handles large resumable uploads, complete object management, and local previews, while account credentials stay encrypted on the machine.",
+    sections: [
+      {
+        title: "Uploads",
+        bullets: [
+          "Drag-and-drop file and folder uploads with destination and overwrite control",
+          "Parallel multipart transfers that pause, resume, and survive restarts",
+          "Post-upload verification and per-bucket profiles for separate accounts",
+        ],
+      },
+      {
+        title: "Object management",
+        bullets: [
+          "Paginated browser with folder navigation, filtering, sorting, and keyboard shortcuts",
+          "Bulk downloads and deletions with a full preflight before anything is confirmed",
+          "Built-in preview, object properties, public URLs, and expiring share links",
+        ],
+      },
+      {
+        title: "Security and delivery",
+        bullets: [
+          "Credentials encrypted per Windows user and kept out of settings and logs",
+          "Per-user installer with consent-based updates verified by size and SHA-256",
+          "Automated build, test, and release pipeline with documented publishing steps",
+        ],
+      },
+    ],
+    tech: ["C#", ".NET Framework 4.8", "WinForms", "Cloudflare R2 (S3 API)"],
+    artwork: "sabhaven",
+    accent: "#fb923c",
+    accentSoft: "rgba(251, 146, 60, 0.14)",
+    year: "2026",
+    role: "Product design, .NET development, security model, release packaging",
+    github: "https://github.com/Saboreq/CloudflareR2Uploader",
+    meta: "v1.0.0 · open source",
+    featured: true,
+  },
+  {
     id: "sabhaven",
     name: "SabHaven",
     category: "Web Application",
@@ -93,7 +137,6 @@ export const projects: Project[] = [
     github: "https://github.com/Saboreq/SabHaven",
     live: "https://files.saboreq.xyz",
     meta: "Live · invite-only",
-    featured: true,
   },
   {
     id: "sabtrace",
